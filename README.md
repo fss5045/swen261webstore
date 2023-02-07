@@ -7,6 +7,7 @@ An online E-store system built in Java 11=> and ___ _replace with other platform
 
 - Finn Saunders-Zurn
 - Justin Lin
+- Tashi Tseten
 
 
 ## Prerequisites
