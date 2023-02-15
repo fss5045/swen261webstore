@@ -1,5 +1,8 @@
+package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
+
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
