@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author fss5045@rit.edu
  */
 public class Product{
-    private static final Logger LOG = Logger.getLogger(Hero.class.getName());
+    private static final Logger LOG = Logger.getLogger(Product.class.getName());
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
@@ -72,7 +72,7 @@ public class Product{
      * Retrieves the number of the product
      * @return The number of the product
      */
-    public String getNumber() {return number;}
+    public int getNumber() {return number;}
 
     /**
      * Sets the number of the product
