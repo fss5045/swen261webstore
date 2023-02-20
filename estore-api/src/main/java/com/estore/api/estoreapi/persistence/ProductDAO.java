@@ -48,7 +48,7 @@ public interface ProductDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Product  createProduct(Product product) throws IOException;
+    Product createProduct(Product product) throws IOException;
 
     /**
      * Updates and saves a {@linkplain Product product}
