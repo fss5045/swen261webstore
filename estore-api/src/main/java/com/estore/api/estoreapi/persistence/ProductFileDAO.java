@@ -8,7 +8,6 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.estore.api.estoreapi.persistence.ProductDAO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
