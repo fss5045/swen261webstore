@@ -60,11 +60,6 @@ public class Product{
      */
     public String getSport() {return sport;}
 
-    /**
-     * Retrieves the color of the product
-     * @return The color of the product
-     */
-    public String getColor() {return color;}
 
     /**
      * Sets the color of the product
@@ -73,16 +68,22 @@ public class Product{
     public void setColor(String color) {this.color = color;}
 
     /**
-     * Retrieves the number of the product
-     * @return The number of the product
+     * Retrieves the color of the product
+     * @return The color of the product
      */
-    public int getNumber() {return number;}
+    public String getColor() {return color;}
 
     /**
      * Sets the number of the product
      * @param number The number of the product
      */
     public void setNumber(int number) {this.number = number;}
+
+    /**
+     * Retrieves the number of the product
+     * @return The number of the product
+     */
+    public int getNumber() {return number;}
 
     /**
      * incriments the number
