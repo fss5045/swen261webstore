@@ -55,6 +55,12 @@ public class Product{
     public void setSport(String sport) {this.sport = sport;}
 
     /**
+     * Retrieves the sport of the product
+     * @return The sport of the product
+     */
+    public String getSport() {return sport;}
+
+    /**
      * Retrieves the color of the product
      * @return The color of the product
      */
