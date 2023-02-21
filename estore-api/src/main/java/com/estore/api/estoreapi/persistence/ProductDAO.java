@@ -40,7 +40,7 @@ public interface ProductDAO {
     /**
      * Creates and saves a {@linkplain Product product}
      * 
-     * @param hero {@linkplain Product product} object to be created and saved
+     * @param product {@linkplain Product product} object to be created and saved
      * <br>
      * The id of the product object is ignored and a new uniqe id is assigned
      *
@@ -69,7 +69,7 @@ public interface ProductDAO {
      * 
      * @return true if the {@link Product product} was deleted
      * <br>
-     * false if hero with the given id does not exist
+     * false if product with the given id does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
