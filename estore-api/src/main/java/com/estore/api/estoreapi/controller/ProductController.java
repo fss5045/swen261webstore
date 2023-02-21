@@ -37,7 +37,7 @@ public class ProductController {
     /**
      * Creates a REST API controller to reponds to requests
      * 
-     * @param heroDao The {@link ProductDAO product Data Access Object} to perform CRUD operations
+     * @param ProductDao The {@link ProductDAO product Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
