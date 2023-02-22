@@ -190,36 +190,6 @@ public class ProductFileDAO implements ProductDAO {
         }
     }
 
-//     /**
-//     ** {@inheritDoc}
-//      */
-//     @Override
-//     public Product updateProductQuantity(Product product) throws IOException {
-//         synchronized(product) {
-//             if (products.containsKey(product.getId()) == false)
-//                 return null;  // product does not exist
-
-//             products.put(product.getId(),product);
-//             save(); // may throw an IOException
-//             return product;
-//         }
-//     }
-
-// /**
-//     ** {@inheritDoc}
-//      */
-//     @Override
-//     public Product updateProductPrice(Product product) throws IOException {
-//         synchronized(product) {
-//             if (products.containsKey(product.getId()) == false)
-//                 return null;  // product does not exist
-
-//             products.put(product.getId(),product);
-//             save(); // may throw an IOException
-//             return product;
-//         }
-//     }    
-
     /**
     ** {@inheritDoc}
      */

@@ -23,24 +23,12 @@ public class Product{
     // @JsonCreator
     public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("number") int number, @JsonProperty("price") int price){
         this.id = id;
-        this.name = "Product";
+        this.name = name;
         this.sport = "";
         this.color = "";
         this.number = number;
         this.price = price;
     }
-    /**
-     * Create a product with the given properties
-     */
-    // public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("sport") String sport, 
-    // @JsonProperty("color") String color, @JsonProperty("number") int number, @JsonProperty("price") int price){
-    //     this.id = id;
-    //     this.name = name;
-    //     this.sport = sport;
-    //     this.color = color;
-    //     this.number = number;
-    //     this.price = price;
-    // }
 
     /**
      * Retrieves the id of the product
