@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -19,8 +20,8 @@ public class Product{
     @JsonProperty("number") private int number;
     @JsonProperty("price") private int price;
 
-
-    public Product(@JsonProperty("id") int id, @JsonProperty("number") int number, @JsonProperty("price") int price){
+    // @JsonCreator
+    public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("number") int number, @JsonProperty("price") int price){
         this.id = id;
         this.name = "Product";
         this.sport = "";
@@ -31,15 +32,15 @@ public class Product{
     /**
      * Create a product with the given properties
      */
-    public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("sport") String sport, 
-    @JsonProperty("color") String color, @JsonProperty("number") int number, @JsonProperty("price") int price){
-        this.id = id;
-        this.name = name;
-        this.sport = sport;
-        this.color = color;
-        this.number = number;
-        this.price = price;
-    }
+    // public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("sport") String sport, 
+    // @JsonProperty("color") String color, @JsonProperty("number") int number, @JsonProperty("price") int price){
+    //     this.id = id;
+    //     this.name = name;
+    //     this.sport = sport;
+    //     this.color = color;
+    //     this.number = number;
+    //     this.price = price;
+    // }
 
     /**
      * Retrieves the id of the product

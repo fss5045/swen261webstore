@@ -168,7 +168,7 @@ public class ProductFileDAO implements ProductDAO {
         synchronized(products) {
             // We create a new product object because the id field is immutable
             // and we need to assign the next unique id
-            Product newProduct = new Product(nextId(), product.getNumber(), product.getPrice());
+            Product newProduct = new Product(nextId(), product.getName(), product.getNumber(), product.getPrice());
             products.put(newProduct.getId(),newProduct);
             save(); // may throw an IOException
             return newProduct;
