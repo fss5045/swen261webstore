@@ -62,6 +62,10 @@ public interface ProductDAO {
      */
     Product updateProduct(Product product) throws IOException;
 
+    Product updateProductQuantity(Product product) throws IOException;
+
+    Product updateProductPrice(Product product) throws IOException;
+
     /**
      * Deletes a {@linkplain Product product} with the given id
      * 

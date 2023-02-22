@@ -17,17 +17,28 @@ public class Product{
     @JsonProperty("sport") private String sport;
     @JsonProperty("color") private String color;
     @JsonProperty("number") private int number;
+    @JsonProperty("price") private int price;
 
+
+    public Product(@JsonProperty("id") int id, @JsonProperty("number") int number, @JsonProperty("price") int price){
+        this.id = id;
+        this.name = "Product";
+        this.sport = "";
+        this.color = "";
+        this.number = number;
+        this.price = price;
+    }
     /**
      * Create a product with the given properties
      */
     public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("sport") String sport, 
-    @JsonProperty("color") String color, @JsonProperty("number") int number){
+    @JsonProperty("color") String color, @JsonProperty("number") int number, @JsonProperty("price") int price){
         this.id = id;
         this.name = name;
         this.sport = sport;
         this.color = color;
         this.number = number;
+        this.price = price;
     }
 
     /**
@@ -90,4 +101,22 @@ public class Product{
      * @param add the amount to increment the number by
      */
     public void addNumber(int add) {this.number += add;}
+
+    /**
+     * Sets the price of the product
+     * @param price The number of the product
+     */
+    public void setPrice(int price) {this.price = price;}
+
+    /**
+     * Retrieves the price of the product
+     * @return The price of the product
+     */
+    public int getPrice() {return price;}
+
+    /**
+     * incriments the price
+     * @param add the amount to increment the price by
+     */
+    public void addPrice(int add) {this.price += add;}
 }
