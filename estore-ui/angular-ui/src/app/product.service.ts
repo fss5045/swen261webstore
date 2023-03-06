@@ -83,7 +83,7 @@ export class ProductsService {
 
     return this.http.delete<Products>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted product id=${id}`)),
-      catchError(this.handleError<s>('deleteProduct'))
+      catchError(this.handleError<Products>('deleteProduct'))
     );
   }
 
