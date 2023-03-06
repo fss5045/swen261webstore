@@ -8,9 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProdcutsDetailComponent } from './products-detail/products-detail.component';
-import { Productsomponent } from './products/products.component';
-import { ProductsSearchComponent } from './products-search/products-search.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsSearchComponent } from './product-search/product-search.component';
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { MessagesComponent } from './messages/messages.component';
     AppComponent,
     DashboardComponent,
     ProductsComponent,
-    ProductsDetailComponent,
+    ProductDetailComponent,
     MessagesComponent,
     ProductsSearchComponent
   ],
