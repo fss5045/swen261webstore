@@ -4,12 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Products } from './product';
+import { Product } from './product';
 import { MessageService } from './message.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class ProductsService {
+export class ProductService {
 
   private productsUrl = 'http://localhost:8080/products';  // URL to web api
 
@@ -21,74 +21,74 @@ export class ProductsService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** GET product from the server */
-  getProducts(): Observable<Products[]> {
-    return this.http.get<Products[]>(this.productsUrl)
+  /** GET products from the server */
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productsUrl)
       .pipe(
         tap(_ => this.log('fetched products')),
-        catchError(this.handleError<Products[]>('getProducts', []))
+        catchError(this.handleError<Product[]>('getProducts', []))
       );
   }
 
   /** GET product by id. Return `undefined` when id not found */
-  getProductNo404<Data>(id: number): Observable<Products> {
+  getProductNo404<Data>(id: number): Observable<Product> {
     const url = `${this.productsUrl}/?id=${id}`;
-    return this.http.get<Products[]>(url)
+    return this.http.get<Product[]>(url)
       .pipe(
         map(products => products[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
           this.log(`${outcome} product id=${id}`);
         }),
-        catchError(this.handleError<Products>(`getProducts id=${id}`))
+        catchError(this.handleError<Product>(`getProducts id=${id}`))
       );
   }
 
   /** GET product by id. Will 404 if id not found */
-  getProduct(id: number): Observable<Products> {
+  getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Products>(url).pipe(
+    return this.http.get<Product>(url).pipe(
       tap(_ => this.log(`fetched product id=${id}`)),
-      catchError(this.handleError<Products>(`getProduct id=${id}`))
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
   }
 
   /* GET products whose name contains search term */
-  searchProducts(term: string): Observable<Products[]> {
+  searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Products[]>(`${this.productsUrl}/?name=${term}`).pipe(
+    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
          this.log(`found products matching "${term}"`) :
          this.log(`no products matching "${term}"`)),
-      catchError(this.handleError<Products[]>('searchProducts', []))
+      catchError(this.handleError<Product[]>('searchProducts', []))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new product to the server */
-  addProduct(product: Products): Observable<Products> {
-    return this.http.post<Products>(this.productsUrl, product, this.httpOptions).pipe(
-      tap((newProducts: Products) => this.log(`added product w/ id=${newProducts.id}`)),
-      catchError(this.handleError<Products>('addProducts'))
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
+      tap((newProducts: Product) => this.log(`added product w/ id=${newProducts.id}`)),
+      catchError(this.handleError<Product>('addProducts'))
     );
   }
 
   /** DELETE: delete the product from the server */
-  deleteProduct(id: number): Observable<Products> {
+  deleteProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
 
-    return this.http.delete<Products>(url, this.httpOptions).pipe(
+    return this.http.delete<Product>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted product id=${id}`)),
-      catchError(this.handleError<Products>('deleteProduct'))
+      catchError(this.handleError<Product>('deleteProduct'))
     );
   }
 
   /** PUT: update the product on the server */
-  updateProduct(product: Products): Observable<any> {
+  updateProduct(product: Product): Observable<any> {
     return this.http.put(this.productsUrl, product, this.httpOptions).pipe(
       tap(_ => this.log(`updated product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))

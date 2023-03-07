@@ -2,7 +2,7 @@
 <div class="products-menu">
   <a *ngFor="let product of products"
       routerLink="/detail/{{product.id}}">
-      {{product.name}}
+      {{product.name}} ({{product.number}} Left)
   </a>
 </div>
 

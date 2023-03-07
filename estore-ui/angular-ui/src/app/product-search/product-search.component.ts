@@ -6,8 +6,8 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Products } from '../product';
-import { ProductsService } from '../product.service';
+import { Product } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-search',
@@ -15,10 +15,10 @@ import { ProductsService } from '../product.service';
   styleUrls: [ './product-search.component.css' ]
 })
 export class ProductsSearchComponent implements OnInit {
-  products$!: Observable<Products[]>;
+  products$!: Observable<Product[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: ProductsService) {}
+  constructor(private productService: ProductService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -34,7 +34,7 @@ export class ProductsSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchProducts(term)),
+      switchMap((term: string) => this.productService.searchProducts(term)),
     );
   }
 }

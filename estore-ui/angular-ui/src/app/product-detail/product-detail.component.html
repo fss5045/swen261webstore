@@ -3,7 +3,9 @@
     <div><span>id: </span>{{product.id}}</div>
     <div>
       <label for="product-name">Product name: </label>
-      <input id="product-name" [(ngModel)]="product.name" placeholder="Product name"/>
+      <input id="product-name" [(ngModel)]="product.name" placeholder="Product name"/><br>
+      <label for="product-number">quantity: </label>
+      <input type="number" id="product-number" [(ngModel)]="product.number" placeholder="Product number"/>
     </div>
     <button type="button" (click)="goBack()">go back</button>
     <button type="button" (click)="save()">save</button>

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Products } from '../product';
-import { ProductsService } from '../product.service';
+import { Product } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,22 +11,22 @@ import { ProductsService } from '../product.service';
   styleUrls: [ './product-detail.component.css' ]
 })
 export class ProductDetailComponent implements OnInit {
-  products: Products | undefined;
+  product: Product | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService,
+    private productService: ProductService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.getProduct();
   }
 
-  getHero(): void {
+  getProduct(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.productsService.getProduct(id)
-      .subscribe(products => this.products = products);
+    this.productService.getProduct(id)
+      .subscribe(products => this.product = products);
   }
 
   goBack(): void {
@@ -34,8 +34,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   save(): void {
-    if (this.products) {
-      this.productsService.updateProduct(this.products)
+    if (this.product) {
+      this.productService.updateProduct(this.product)
         .subscribe(() => this.goBack());
     }
   }
