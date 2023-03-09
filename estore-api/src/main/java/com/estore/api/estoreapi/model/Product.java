@@ -20,7 +20,11 @@ public class Product{
     @JsonProperty("number") private int number;
     @JsonProperty("price") private int price;
 
-    // @JsonCreator
+    //for tests
+    static final String STRING_FORMAT = "Product [id=%d, name=%s, number=%d, price=%d, sport=%s, color=%s]";
+
+
+    @JsonCreator
     public Product(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("number") int number, @JsonProperty("price") int price){
         this.id = id;
         this.name = name;
@@ -108,4 +112,12 @@ public class Product{
      * @param add the amount to increment the price by
      */
     public void addPrice(int add) {this.price += add;}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format(STRING_FORMAT,id,name, number, price, sport, color);
+    }
 }
