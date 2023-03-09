@@ -1,0 +1,1 @@
+//object: user if user.getUserType == UserType.Admin do "display admin page" else display customer
