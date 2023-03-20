@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.estore.api.estoreapi.model.Enums.*;
+
+import java.util.ArrayList;
+
+import com.estore.api.estoreapi.model.Product;
 public class User {
     @JsonProperty("username")
     private final String username;
@@ -11,17 +15,22 @@ public class User {
     private final int id;
     @JsonProperty("userType")
     private final UserType userType;
+    @JsonProperty("cart")
+    private final ArrayList<Product> cart;
 
     @JsonCreator
-    public User(@JsonProperty("username") String username, @JsonProperty("id") int id ){
+    public User(@JsonProperty("username") String username, @JsonProperty("id") int id){
         this.username = username;
         this.id = id;
         if(username == "admin"){
             userType = UserType.Admin;
+            this.cart = null;
         }
         else{
             userType = UserType.Customer;
+            this.cart = new ArrayList<Product>();
         }
+        
     }
     /**
      * Method to get the username of a user.
