@@ -30,10 +30,8 @@ public interface UserDAO {
     /**
      * Creates and saves a {@linkplain User user}
      * 
-     * @param product {@linkplain User user} object to be created and saved
-     * <br>
-     * The id of the user object is ignored and a new uniqe id is assigned
-     *
+     * @param username username for object to be created and saved
+     * <br> 
      * @return new {@link User user} if successful, false otherwise 
      * 
      * @throws IOException if an issue with underlying storage
@@ -43,7 +41,7 @@ public interface UserDAO {
     /**
      * Deletes a {@linkplain User user} with the given id
      * 
-     * @param id The id of the {@link User user}
+     * @param id The username of the {@link User user}
      * 
      * @return true if the {@link User user} was deleted
      * <br>
@@ -51,6 +49,6 @@ public interface UserDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteUser(int id) throws IOException;
+    boolean deleteUser(String username) throws IOException;
 
 }
