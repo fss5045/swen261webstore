@@ -20,7 +20,6 @@ public class UserTests {
         // Setup
         String expectedName = "test";
         int expectedId = 1;
-        User expectedUser = new User("test", 1);
 
         // Invoke
         User actual = new User(expectedName, expectedId);
