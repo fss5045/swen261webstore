@@ -28,7 +28,7 @@ public class User {
      * 
      * @return Returns the string username of the user.
      */
-    String getUsername(){
+    public String getUsername(){
         return this.username;
     }
 
@@ -37,7 +37,7 @@ public class User {
      * 
      * @return returns the id number of a user.
      */
-    int getId(){
+    public int getId(){
         return this.id;
     }
 
@@ -46,7 +46,7 @@ public class User {
      * 
      * @return Returns the USerAccessLevel of the user.
      */
-    UserType getUserType(){
+    public UserType getUserType(){
         return this.userType;
     }
     
