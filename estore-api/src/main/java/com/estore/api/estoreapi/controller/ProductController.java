@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import com.estore.api.estoreapi.persistence.ProductDAO;
 import com.estore.api.estoreapi.model.Product;
+import com.estore.api.estoreapi.model.Enums.UserType;
 
 /**
  * Handles the REST API requests for the product resource
@@ -28,11 +29,12 @@ import com.estore.api.estoreapi.model.Product;
  * @author fss5045@rit.edu
  */
 
- @RestController
- @RequestMapping("products")
+@RestController
+@RequestMapping("products")
 public class ProductController {
     private static final Logger LOG = Logger.getLogger(ProductController.class.getName());
     private ProductDAO productDao;
+    private LoginController loginController;
 
     /**
      * Creates a REST API controller to reponds to requests
@@ -41,8 +43,9 @@ public class ProductController {
      * <br>
      * This dependency is injected by the Spring Framework
      */
-    public ProductController(ProductDAO productDao) {
+    public ProductController(ProductDAO productDao, LoginController loginController) {
         this.productDao = productDao;
+        this.loginController = loginController;
     }
 
     /**
@@ -127,7 +130,12 @@ public class ProductController {
     @PostMapping("")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         LOG.info("POST /products " + product);
+        // LOG.info("current user " + loginController.currentUser);
         // Replace below with your implementation
+        if(loginController.currentUser.getUserType() != UserType.Admin){
+            LOG.info("NOT LOGGED INTO ADMIN");
+            return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
+        }
         try {
             if (productDao.getProduct(product.getId()) != null)
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -156,6 +164,10 @@ public class ProductController {
         LOG.info("PUT /products " + product);
 
         // Replace below with your implementation
+        if(loginController.currentUser.getUserType() != UserType.Admin){
+            LOG.info("NOT LOGGED INTO ADMIN");
+        return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
+        }
         try {
             product = productDao.updateProduct(product);
             if (product != null){
@@ -184,6 +196,10 @@ public class ProductController {
         LOG.info("DELETE /products/" + id);
 
         // Replace below with your implementation
+        if(loginController.currentUser.getUserType() != UserType.Admin){
+            LOG.info("NOT LOGGED INTO ADMIN");
+        return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
+        }
         try {
             if (productDao.deleteProduct(id)){
                 return new ResponseEntity<>(HttpStatus.OK);

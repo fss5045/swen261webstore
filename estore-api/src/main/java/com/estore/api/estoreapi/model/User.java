@@ -16,6 +16,8 @@ public class User {
     private final UserType userType;
     @JsonProperty("cart")
     private ArrayList<Product> cart;
+    
+    // private ProductDAO productDao;
 
     @JsonCreator
     public User(@JsonProperty("username") String username, @JsonProperty("id") int id){
@@ -65,4 +67,12 @@ public class User {
     public void setCart(ArrayList<Product> cart){
          this.cart = cart;
     }
+
+    // public void addToCart(int id) throws IOException{
+    //     this.cart.add(productDao.getProduct(id));
+    // }
+    
+    // public void removeFromCart(int id) throws IOException{
+    //     this.cart.remove(productDao.getProduct(id));
+    // }
 }
