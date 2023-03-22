@@ -4,7 +4,6 @@ import java.io.IOException;
 import com.estore.api.estoreapi.model.User;
 
 public interface UserDAO {
-    
     /**
      * Retrieves all {@linkplain User users}
      * 
