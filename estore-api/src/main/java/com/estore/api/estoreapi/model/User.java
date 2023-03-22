@@ -59,13 +59,13 @@ public class User {
     public UserType getUserType(){
         return this.userType;
     }
-
+    
     public ArrayList<Product> getCart(){
         return this.cart;
     }
 
     public void setCart(ArrayList<Product> cart){
-         this.cart = cart;
+        this.cart = cart;
     }
 
     // public void addToCart(int id) throws IOException{
