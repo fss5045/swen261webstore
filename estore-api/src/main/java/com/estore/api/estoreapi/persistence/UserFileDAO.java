@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.User;
 
+@Component
 public class UserFileDAO implements UserDAO{
     Map<String,User> users;
     private ObjectMapper objectMapper;
     private static int nextId;
     private String filename;
 
-    public UserFileDAO(@Value("${logins.file}") String filename, ObjectMapper objectMapper) throws IOException{
+    public UserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException{
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -29,11 +30,11 @@ public class UserFileDAO implements UserDAO{
      * 
      * @return The next id
      */
-    private synchronized static int nextId() {
-        int id = nextId;
-        ++nextId;
-        return id;
-    }
+    // private synchronized static int nextId() {
+    //     int id = nextId;
+    //     ++nextId;
+    //     return id;
+    // }
 
     /**
      * Generates an array of {@linkplain User user} from the tree map for any
@@ -91,7 +92,7 @@ public class UserFileDAO implements UserDAO{
 
         // Add each product to the tree map and keep track of the greatest id
         for (User user : userArray) {
-            users.put(user.getUsername(),user);
+            users.put(user.getUsername(), user);
             if (user.getId() > nextId)
                 nextId = user.getId();
         }

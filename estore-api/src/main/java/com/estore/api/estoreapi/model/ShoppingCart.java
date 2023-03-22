@@ -3,12 +3,7 @@ package com.estore.api.estoreapi.model;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.estore.api.estoreapi.model.Product;
-import com.estore.api.estoreapi.model.User;
 import com.estore.api.estoreapi.persistence.ProductDAO;
-import com.estore.api.estoreapi.controller.ProductController;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
     /**
      * Shopping cart functionality where the customer is able to modify the cart by checking out
@@ -18,9 +13,8 @@ public class ShoppingCart {
     private User user;
     private ProductDAO productDao;
 
-    public ShoppingCart(User user, ProductDAO productDAO){
+    public ShoppingCart(User user){
         this.user = user;
-        this.productDao = productDao;
     }
     /**
      * Adds a {@linkplain Product product} to the shopping cart.
