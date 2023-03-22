@@ -14,10 +14,11 @@ import com.estore.api.estoreapi.model.*;
 import com.estore.api.estoreapi.persistence.UserDAO;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("")
 public class UserController{
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserDAO userDao;
+
 
     public UserController(UserDAO userDao){
         this.userDao = userDao;
@@ -75,4 +76,5 @@ public class UserController{
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

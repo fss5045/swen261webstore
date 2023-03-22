@@ -9,46 +9,83 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: name
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Finn Saunders
+  * Justin Lin
+  * Tashi Tseten
+  * PJ Esterly
 
 ## Executive Summary
 
 This is a summary of the project.
 
+This project is an e-store application with minimal functionality, security, and presistance.
+
 ### Purpose
 > _Provide a very brief statement about the project and the most
 > important user group and user goals._
 
+The project is an e-store application that will allow the customer(s) to shop for certain sports balls with the goal of having an easy shopping expereince and the ability to log out and login without their data disappearing.
+
 ### Glossary and Acronyms
 > _Provide a table of terms and acronyms._
 
-| Term | Definition |
-|------|------------|
-| SPA | Single Page |
-
+| Term | Definition                        |
+|------|-----------------------------------|
+| SPA  | Single Page                       |
+| DAO  | Data Access Object                |
+| API  | Application Programming Interface |
+| HTML | Hypertext Markup Language         |
 
 ## Requirements
 
 This section describes the features of the application.
 
 > _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
+> story. Focus on top-level features from the Vision document and
 > maybe Epics and critical Stories._
+
+-Login Page
+-Unique Admin and User Pages
+-Inventory Control
+-Product Search
+-Product Management
+-Shopping Cart
 
 ### Definition of MVP
 > _Provide a simple description of the Minimum Viable Product._
 
+The MVP will have the following functionality: minimal authentucation for users (owner and custmoer and only usernames), customer functionality including viewing products, a shopping cart, and a checkout, inventory management, and data persistance.
+
 ### MVP Features
 > _Provide a list of top-level Epics and/or Stories of the MVP._
+
+-Inventory
+  -Add
+  -Remove
+  -Modify
+-Login
+  -Owner view
+  -Customer veiw
+  -Username
+-Shopping Cart
+  -Add
+  -Remove
+  -Checkout
+-Browse
+  -View products
+  -Search products
 
 ### Roadmap of Enhancements
 > _Provide a list of top-level features in the order you plan to consider them._
 
+-Inventory Management
+-Browse
+-Login
+-Shopping Cart
+-10% #1
+-10% #2
 
 ## Application Domain
 
@@ -60,6 +97,7 @@ This section describes the application domain.
 > can discuss the more important domain entities and their relationship
 > to each other._
 
+Figure out how to insert a third party file into this project
 
 ## Architecture and Design
 
