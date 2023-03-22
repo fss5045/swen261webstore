@@ -16,7 +16,7 @@ public class User {
     @JsonProperty("userType")
     private final UserType userType;
     @JsonProperty("cart")
-    private final ArrayList<Product> cart;
+    private ArrayList<Product> cart;
 
     @JsonCreator
     public User(@JsonProperty("username") String username, @JsonProperty("id") int id){
@@ -58,5 +58,12 @@ public class User {
     public UserType getUserType(){
         return this.userType;
     }
-    
+
+    public ArrayList<Product> getCart(){
+        return this.cart;
+    }
+
+    public void setCart(ArrayList<Product> cart){
+         this.cart = cart;
+    }
 }
