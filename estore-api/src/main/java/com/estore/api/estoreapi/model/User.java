@@ -7,7 +7,6 @@ import com.estore.api.estoreapi.model.Enums.*;
 
 import java.util.ArrayList;
 
-import com.estore.api.estoreapi.model.Product;
 public class User {
     @JsonProperty("username")
     private final String username;

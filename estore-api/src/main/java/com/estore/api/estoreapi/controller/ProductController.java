@@ -131,9 +131,10 @@ public class ProductController {
         try {
             if (product == productDao.getProduct(product.getId()))
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
-            else   
-                productDao.createProduct(product);
-                return new ResponseEntity<Product>(product,HttpStatus.CREATED);
+            else{
+                Product newProduct = productDao.createProduct(product);
+                return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
+            }
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
