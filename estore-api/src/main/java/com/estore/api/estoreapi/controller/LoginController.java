@@ -3,32 +3,29 @@ package com.estore.api.estoreapi.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.estore.api.estoreapi.model.*;
 import com.estore.api.estoreapi.model.Enums.UserType;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("")
 public class LoginController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserController userController;
-    private UserType currentUser;
+    public  User currentUser;
 
     public LoginController(UserController userController){
         this.userController = userController;
         this.currentUser = null;
     }
 
-    @PostMapping("")
+    @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody String username){
         LOG.info("POST /login " + username);
         User user = null;
@@ -42,13 +39,13 @@ public class LoginController {
         if(user.getUserType() == UserType.Admin){
             // login to admin page
             LOG.info("logging in as admin");
-            this.currentUser = UserType.Admin;
+            this.currentUser = user;
             return new ResponseEntity<User>(user, HttpStatus.OK);
         }
         else{
             // login to user page
-            LOG.info("logging in as customer");
-            this.currentUser = UserType.Customer;
+            LOG.info("logging in as customer:" + username);
+            this.currentUser = user;
             return new ResponseEntity<User>(user, HttpStatus.OK);
         }
     }
