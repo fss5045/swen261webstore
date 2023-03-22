@@ -45,10 +45,15 @@ public class UserFileDAOTests {
     @Test
     public void testGetUsers()
     {
+        //not currently in use
         User[] actual = userFileDAO.getUsers();
         assertEquals(testUsers.length , actual.length);
-        for(int i = 0;i <testUsers.length;i++)
-            assertEquals(actual[i],testUsers[i]);
+        for(int i = 0;i <testUsers.length;i++){
+            System.out.println(actual[i].getUsername());
+            System.out.println(testUsers[i].getUsername());
+            //[finn, justin, paul, tashi] vs [justin, paul, finn, tashi]
+            assertEquals(actual[i],testUsers[i]); 
+        }
     }
 
     @Test
@@ -80,8 +85,8 @@ public class UserFileDAOTests {
     {
         boolean result = assertDoesNotThrow(() -> userFileDAO.deleteUser("Tashi"),
                                                 "Unexpected exception thrown");
-        assertEquals(result,false);
-        assertEquals(userFileDAO.users.size(),testUsers.length);
+        assertEquals(true, result);
+        assertEquals(userFileDAO.users.size(),testUsers.length-1);
     }
 }
 
