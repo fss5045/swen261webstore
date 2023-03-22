@@ -129,7 +129,7 @@ public class ProductController {
         LOG.info("POST /products " + product);
         // Replace below with your implementation
         try {
-            if (product == productDao.getProduct(product.getId()))
+            if (productDao.getProduct(product.getId()) != null)
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             else{
                 Product newProduct = productDao.createProduct(product);
