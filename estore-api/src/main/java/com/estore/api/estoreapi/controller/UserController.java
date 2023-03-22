@@ -21,11 +21,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.estore.api.estoreapi.model.*;
-import com.estore.api.estoreapi.model.Enums.UserType;
 import com.estore.api.estoreapi.persistence.UserDAO;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("users")
 public class UserController{
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserDAO userDao;
@@ -34,29 +33,52 @@ public class UserController{
         this.userDao = userDao;
     }
 
-    // @RequestMapping("id")
-    // public ResponseEntity<User> getUser(@PathVariable int id){
-    //     LOG.info("GET /login/" + id);
-    // }
-
-    //post call to login
-    @PostMapping("")
-    public ResponseEntity<User> login(@RequestBody String username){
-        LOG.info("POST /login " + username);
-        try{
-            // create user if not already existing
-            if(userDao.getUser(username) == null){
-                userDao.createUser(username);
-            }
+    public ResponseEntity<User> getUser(String username){
+        try {
             User user = userDao.getUser(username);
-            if(user.getUserType() == UserType.Admin){
-                // login to admin page
-                return new ResponseEntity<User>(user, HttpStatus.OK);
-            }
+            if (user != null)
+                return new ResponseEntity<User>(user,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<User[]> getUsers(){
+        try {
+            return new ResponseEntity<User[]>(userDao.getUsers(),HttpStatus.OK);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<User> createUser(String username){
+        try {
+            if (userDao.getUser(username) != null)
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
             else{
-                // login to user page
-                return new ResponseEntity<User>(user, HttpStatus.OK);
+                User user = userDao.createUser(username);
+                return new ResponseEntity<User>(user,HttpStatus.CREATED);
             }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<User> deleteUser(String username){
+        try {
+            if (userDao.deleteUser(username)){
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
