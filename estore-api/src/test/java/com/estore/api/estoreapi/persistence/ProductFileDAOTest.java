@@ -31,7 +31,7 @@ public class ProductFileDAOTest{
     {
         mockObjectMapper = mock(ObjectMapper.class);
         testProducts = new Product[3];
-        testProducts[0] = new Product(99,"basketball",100,20);
+        testProducts[0] = new Product(99,"tasketball",100,20);
         testProducts[1] = new Product(100,"soccerball",100,10);
         testProducts[2] = new Product(101,"volleyball",100,15);
         when(mockObjectMapper

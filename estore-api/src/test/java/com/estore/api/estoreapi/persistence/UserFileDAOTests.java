@@ -35,6 +35,10 @@ public class UserFileDAOTests {
         testUsers[1] = new User("Paul",101);
         testUsers[2] = new User("Finn",102);
         testUsers[3] = new User("Tashi", 103);
+        // testUsers[0] = new User("d",100);
+        // testUsers[1] = new User("c",101);
+        // testUsers[2] = new User("b",102);
+        // testUsers[3] = new User("a", 103);
 
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),User[].class))
@@ -45,7 +49,8 @@ public class UserFileDAOTests {
     @Test
     public void testGetUsers()
     {
-        //not currently in use
+        //problem is that actual is sorted in alphabetical order
+        //while testusers does not always have to be
         User[] actual = userFileDAO.getUsers();
         assertEquals(testUsers.length , actual.length);
         for(int i = 0;i <testUsers.length;i++){
