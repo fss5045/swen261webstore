@@ -81,51 +81,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testCreateUser() throws IOException {  // createUser may throw IOException
-        // Setup
-        User user = new User("test2", 1);
-        // when createUser is called, return true simulating successful
-        // creation and save
-        when(mockUserDao.createUser(user.getUsername())).thenReturn(user);
-
-        // Invoke
-        ResponseEntity<User> response = userController.createUser(user.getUsername());
-
-        // Analyze
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertEquals(user,response.getBody());
-    }
-
-    @Test
-    public void testCreateUserFailed() throws IOException {  // createUser may throw IOException
-        // Setup
-        User user = new User("test2null", 1);
-        // when createUser is called, return false simulating failed
-        // creation and save
-        when(mockUserDao.createUser(user.getUsername())).thenReturn(null);
-
-        // Invoke
-        ResponseEntity<User> response = userController.createUser(user.getUsername());
-
-        // Analyze
-        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
-    }
-
-    @Test
-    public void testCreateUserHandleException() throws IOException {  // createUser may throw IOException
-        // Setup
-        User user = new User("test2fail", 1);
-        // When createUser is called on the Mock User DAO, throw an IOException
-        doThrow(new IOException()).when(mockUserDao).createUser(user.getUsername());
-
-        // Invoke
-        ResponseEntity<User> response = userController.createUser(user.getUsername());
-
-        // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
-    }
-
-    @Test
     public void testGetUsers() throws IOException { // getUsers may throw IOException
         // Setup
         User[] users = new User[2];
@@ -154,6 +109,53 @@ public class UserControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testCreateUser() throws IOException {  // createUser may throw IOException
+        // Setup
+        User user = new User("test2", 1);
+        // when createUser is called, return true simulating successful
+        // creation and save
+        when(mockUserDao.createUser(user.getUsername())).thenReturn(user);
+
+        // Invoke
+        ResponseEntity<User> response = userController.createUser(user.getUsername());
+
+        // Analyze
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(user,response.getBody());
+    }
+
+    @Test
+    public void testCreateUserFailed() throws IOException {  // createUser may throw IOException
+        // Setup
+        User user = new User("test2null", 1);
+        
+        // when getUser is called, return user simulating the user already existing and save
+        when(mockUserDao.getUser(user.getUsername())).thenReturn(user);
+
+        // Invoke
+        ResponseEntity<User> response = userController.createUser(user.getUsername());
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
+    }
+
+    @Test
+    public void testCreateUserHandleException() throws IOException {  // createUser may throw IOException
+        // Setup
+        User user = new User("test2fail", 1);
+        // When createUser is called on the Mock User DAO, throw an IOException
+        doThrow(new IOException()).when(mockUserDao).createUser(user.getUsername());
+
+        // Invoke
+        ResponseEntity<User> response = userController.createUser(user.getUsername());
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
+    
 
     @Test
     public void testDeleteUser() throws IOException { // deleteUser may throw IOException
