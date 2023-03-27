@@ -34,7 +34,7 @@ import com.estore.api.estoreapi.model.Enums.UserType;
 public class ProductController {
     private static final Logger LOG = Logger.getLogger(ProductController.class.getName());
     private ProductDAO productDao;
-    private LoginController loginController;
+    public LoginController loginController;
 
     /**
      * Creates a REST API controller to reponds to requests

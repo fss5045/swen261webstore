@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.estore.api.estoreapi.model.Product;
 import com.estore.api.estoreapi.persistence.ProductDAO;
+import com.estore.api.estoreapi.model.User;
 
 /**
  * Test the Product Controller class
@@ -36,7 +37,9 @@ public class ProductControllerTest {
     public void setupProductController() {
         mockProductDAO = mock(ProductDAO.class);
         mockLoginController = mock(LoginController.class);
+        User admin = new User("admin", 0);
         productController = new ProductController(mockProductDAO, mockLoginController);
+        productController.loginController.currentUser = admin;
     }
 
     @Test
@@ -97,6 +100,7 @@ public class ProductControllerTest {
         when(mockProductDAO.createProduct(product)).thenReturn(product);
 
         // Invoke
+        // System.out.println("help " + productController.loginController.currentUser.getUserType());
         ResponseEntity<Product> response = productController.createProduct(product);
 
         // Analyze
@@ -110,12 +114,12 @@ public class ProductControllerTest {
         Product product = new Product(1, "Soccer Ball", 10, 5);
         // when createProduct is called, return false simulating failed
         // creation and save
-        when(mockProductDAO.createProduct(product)).thenReturn(null);
+        when(mockProductDAO.getProduct(product.getId())).thenReturn(product);
 
         // Invoke
         ResponseEntity<Product> response = productController.createProduct(product);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
     }
 
@@ -129,7 +133,7 @@ public class ProductControllerTest {
         // Invoke
         ResponseEntity<Product> response = productController.createProduct(product);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
@@ -146,7 +150,7 @@ public class ProductControllerTest {
         // Invoke
         response = productController.updateProduct(product);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(product,response.getBody());
     }
@@ -162,7 +166,7 @@ public class ProductControllerTest {
         // Invoke
         ResponseEntity<Product> response = productController.updateProduct(product);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
@@ -173,10 +177,10 @@ public class ProductControllerTest {
         // When updateProduct is called on the Mock Product DAO, throw an IOException
         doThrow(new IOException()).when(mockProductDAO).updateProduct(product);
 
-        // Invoke
+        // // Invoke
         ResponseEntity<Product> response = productController.updateProduct(product);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
@@ -253,7 +257,7 @@ public class ProductControllerTest {
         // Invoke
         ResponseEntity<Product> response = productController.deleteProduct(productId);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
@@ -267,7 +271,7 @@ public class ProductControllerTest {
         // Invoke
         ResponseEntity<Product> response = productController.deleteProduct(productId);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
@@ -281,7 +285,7 @@ public class ProductControllerTest {
         // Invoke
         ResponseEntity<Product> response = productController.deleteProduct(productId);
 
-        // Analyze
+        // // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 }
