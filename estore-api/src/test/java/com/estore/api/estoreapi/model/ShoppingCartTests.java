@@ -35,7 +35,7 @@ public class ShoppingCartTests{
         ShoppingCart result = new ShoppingCart(productDAO);
 
         // Analyze
-        assertEquals("ShoppingCart", result.getClass());
+        assertEquals(ShoppingCart.class, result.getClass());
     }
 
     
