@@ -3,11 +3,14 @@ package com.estore.api.estoreapi.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -23,16 +26,23 @@ import com.estore.api.estoreapi.model.User;
  * @author jl6941@rit.edu
  */
 public class ShoppingCartTests{
-    private ProductDAO productDAO;  
+  private ProductDAO mockProductDAO;
+  private ShoppingCart shoppingCart;
 
+  @BeforeEach
+  public void setupShoppingCart(){
+    mockProductDAO = mock(ProductDAO.class);
+    shoppingCart = new ShoppingCart(mockProductDAO);
+
+  }
     @Test
     public void testConstructor(){
         // Setup
         String expectedUsername = "test";
         int expectedId = 1;
-
+        
         // Invoke
-        ShoppingCart result = new ShoppingCart(productDAO);
+        ShoppingCart result = new ShoppingCart(mockProductDAO);
 
         // Analyze
         assertEquals(ShoppingCart.class, result.getClass());
@@ -48,11 +58,10 @@ public class ShoppingCartTests{
         // Create a Product object
         Product product = new Product(10, "product1", 1, 10);
 
-        ShoppingCart cart = new ShoppingCart(productDAO);
         // Add the Product object to the User's cart
         user.getCart().add(product);
         // Call the addItem method of the Cart object with the User object and the product ID
-        cart.addItem(user, 1);
+        shoppingCart.addItem(user, 1);
         // Check that the Product object was added to the User's cart
         assertTrue(user.getCart().contains(product));
       }
@@ -67,11 +76,12 @@ public class ShoppingCartTests{
     // Create a Product object
     Product product = new Product(10,"product1",1,10);
 
-    ShoppingCart cart = new ShoppingCart(productDAO);
     // Add the Product object to the User's cart
     user.getCart().add(product);
+    when(mockProductDAO.getProduct(10)).thenReturn(product);
     // Call the removeItem method of the Cart object with the User object and the product ID
-    cart.removeItem(user, 1);
+    shoppingCart.removeItem(user, 10);
+
     // Check that the Product object was removed from the User's cart
     assertFalse(user.getCart().contains(product));
   }
