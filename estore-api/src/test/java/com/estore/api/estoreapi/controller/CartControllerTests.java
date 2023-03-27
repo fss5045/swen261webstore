@@ -40,8 +40,9 @@ public class CartControllerTests {
         testProductDAO = mock(ProductDAO.class);
         testUserDAO = mock(UserDAO.class);
         testUserController = new UserController(testUserDAO);
-        testUserController.createUser("Tashi");
+        User user = new User("Tashi", 2);
         testLoginController = new LoginController(testUserController);
+        testLoginController.currentUser = user;
         testShoppingCart = new ShoppingCart(testProductDAO);
         testCartController = new CartController(testProductDAO,testLoginController,testShoppingCart);
     }
@@ -49,12 +50,13 @@ public class CartControllerTests {
     @Test
     public void testAddItemToCart() throws IOException
     {
-        testLoginController.login("Tashi");
-
+        Product test = new Product(100, "testing", 0, 0);
+        when(testProductDAO.getProduct(100)).thenReturn(test);
         ArrayList<Product> cart = testLoginController.currentUser.getCart();
         int size = cart.size();
         testCartController.addItemToCart(100);
         int id = -1;
+        // System.out.println("help " +  cart);
         for(Product product:cart)
         {
             if(product.getId()==100)
@@ -66,10 +68,10 @@ public class CartControllerTests {
         assertEquals(100,id);
         assertEquals(size+1,testLoginController.currentUser.getCart().size());
     }
-    public void testRemoveItemToCart()
+    public void testRemoveItemToCart() throws IOException
     {
-        testLoginController.login("Tashi");
-
+        Product test = new Product(100, "testing", 0, 0);
+        when(testProductDAO.getProduct(100)).thenReturn(test);
         testCartController.addItemToCart(100);
         ArrayList<Product> cart = testLoginController.currentUser.getCart();
         int size = cart.size();

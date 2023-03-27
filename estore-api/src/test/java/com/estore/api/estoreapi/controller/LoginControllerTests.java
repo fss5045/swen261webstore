@@ -21,37 +21,39 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class LoginControllerTests {
-    private LoginController testLogin;
-    private UserController testUser;
+    private UserController testUserController;
     private UserDAO testUserDAO;
+    private LoginController testLoginController;
     
     @BeforeEach
     public void setUpLoginController()
     {
         testUserDAO = mock(UserDAO.class);
-        testUser = new UserController(testUserDAO);
-        testLogin = new LoginController(testUser);
+        testUserController = new UserController(testUserDAO);
+        testLoginController = new LoginController(testUserController);
     }
     @Test
     public void testLogin() throws IOException
     {
-        //User user1 = testUserDAO.createUser("Tashi");
-        User user2 = testUserDAO.createUser("Admin");
+        User user1 = new User("Tashi", 2);
+        User user2 = new User("admin", 0);
         
-        //testLogin.login("Tashi");
+        when(testUserDAO.getUser(user1.getUsername())).thenReturn(user1);
+        testLoginController.login("Tashi");
 
-        //assertEquals(testLogin.currentUser,user1);
+        assertEquals(testLoginController.currentUser,user1);
 
-        testLogin.login("Admin");
+        when(testUserDAO.getUser(user2.getUsername())).thenReturn(user2);
+        testLoginController.login("admin");
 
-        assertEquals(testLogin.currentUser,user2);
+        assertEquals(testLoginController.currentUser,user2);
 
     }
     @Test
     public void testLogout()
     {
-        testLogin.logout();
+        testLoginController.logout();
 
-        assertNull(testLogin.currentUser);
+        assertNull(testLoginController.currentUser);
     }
 }
