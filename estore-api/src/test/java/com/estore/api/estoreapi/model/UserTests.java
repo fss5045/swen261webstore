@@ -1,7 +1,11 @@
 package com.estore.api.estoreapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -79,5 +83,35 @@ public class UserTests {
 
         // Analyze
         assertEquals(UserType.Admin, result);
+    }
+    @Test
+    public void testGetCart()
+    {
+        // Setup
+        User testUser = new User("justin", 0);
+        User testUser2 = new User("admin", 1);
+
+        //Invoke
+        ArrayList<Product> cart = testUser.getCart();
+        ArrayList<Product> cart2 = testUser2.getCart();
+
+        //Analyze
+        assertNotNull(cart);
+        assertNull(cart2);
+    }
+    @Test
+    public void testSetCart()
+    {
+        // Setup
+        User testUser = new User("justin", 0);
+        Product basketball = new Product(1, "basketball", 100, 20);
+        ArrayList<Product> cart = new ArrayList<>();
+        cart.add(basketball);
+        
+        // Invoke
+        testUser.setCart(cart);
+
+        // Analyze
+        assertEquals(testUser.getCart(),cart);
     }
 }
