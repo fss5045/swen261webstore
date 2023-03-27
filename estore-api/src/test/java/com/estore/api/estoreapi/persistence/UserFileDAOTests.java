@@ -11,10 +11,13 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.estore.api.estoreapi.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -35,10 +38,6 @@ public class UserFileDAOTests {
         testUsers[1] = new User("Paul",101);
         testUsers[2] = new User("Finn",102);
         testUsers[3] = new User("Tashi", 103);
-        // testUsers[0] = new User("d",100);
-        // testUsers[1] = new User("c",101);
-        // testUsers[2] = new User("b",102);
-        // testUsers[3] = new User("a", 103);
 
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),User[].class))
@@ -52,12 +51,13 @@ public class UserFileDAOTests {
         //problem is that actual is sorted in alphabetical order
         //while testusers does not always have to be
         User[] actual = userFileDAO.getUsers();
+        List<Object> testUsersList = Arrays.asList(testUsers);
         assertEquals(testUsers.length , actual.length);
         for(int i = 0;i <testUsers.length;i++){
-            System.out.println(actual[i].getUsername());
-            System.out.println(testUsers[i].getUsername());
+            //System.out.println(actual[i].getUsername());
+            //System.out.println(testUsers[i].getUsername());
             //[finn, justin, paul, tashi] vs [justin, paul, finn, tashi]
-            assertEquals(actual[i],testUsers[i]); 
+            assertEquals(true, testUsersList.contains(actual[i]));
         }
     }
 
