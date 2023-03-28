@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpResponse } from '@angular/common/http';
 
-import { Observable, of, pipe } from 'rxjs';
+import { Observable, of, pipe, Subscription } from 'rxjs';
 import { catchError, map, subscribeOn, tap } from 'rxjs/operators';
 
 import { User } from './user';
 import { UserType } from './user.type';
 
 import { MessageService } from './message.service';
+import { JsonPipe } from '@angular/common';
 
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   private url = 'http://localhost:8080';  // URL to web api
-  UserType = UserType;
-  currentUser: User | undefined;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,10 +21,9 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) {
-      this.getCurrentUser().subscribe(current => this.currentUser = current);
-    }
+    private messageService: MessageService) {}
     
+    /** POST: login */
     login(username: string): Observable<User> {
       const url = `${this.url}/login`;
       return this.http.post<User>(url, username, this.httpOptions).pipe(
@@ -34,6 +32,7 @@ export class LoginService {
         );
     }
 
+    /** PATCH: logout */
     logout(): Observable<boolean> {
       const url = `${this.url}/logout`;
       return this.http.patch<boolean>(url, this.httpOptions).pipe(
@@ -41,7 +40,7 @@ export class LoginService {
         catchError(this.handleError<boolean>('logout'))
         );
     }
-
+    /** GET: get the current(logged in) user */
     getCurrentUser(): Observable<User> {
       const url = `${this.url}/current`;
       return this.http.get<User>(url).pipe( 
@@ -50,18 +49,20 @@ export class LoginService {
         );
     }
 
-    isAdmin(): Observable<boolean> {
-      // return of(true).pipe(
-      // tap((status: boolean) => this.log(`isAdmin =${status}`))
-      // );
-      // this.log(`value  = ${UserType.Admin.valueOf()}, ${UserType.Customer.valueOf()}`)
-      // this.log(`value 1 = ${JSON.stringify(UserType.Admin) === JSON.stringify(UserType.Customer)}`)
-      // this.log(`value 2 = ${UserType.Admin.valueOf() === UserType.Customer.valueOf()}`)
-      return of(this.currentUser?.userType.valueOf() === UserType.Admin.valueOf()).pipe(
-        tap((status: boolean) => this.log(`status =${status}, currentUsertype =${this.currentUser?.userType}`)),
-        catchError(this.handleError<boolean>('isAdmin'))
-      )
-    }
+    // isAdmin(user: User | undefined): Observable<boolean> {
+    //   let bool: boolean = false;
+    //   if(user == undefined){
+    //     // this.log(`undef`)
+    //     bool = false;
+    //   }
+    //   else if(user.userType.toString() === UserType[UserType.Admin]){
+    //     bool = true;
+    //   }
+    //   return of(bool).pipe(
+    //     tap((status: boolean) => this.log(`admin status =${status}`)),
+    //     catchError(this.handleError<boolean>('isAdmin'))
+    //   )
+    // }
 
     /**
    * Handle Http operation that failed.

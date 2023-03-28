@@ -5,6 +5,7 @@ import { ProductService } from '../product.service';
 
 import {User} from '../user';
 import { LoginService } from '../login.service';
+import { UserType } from '../user.type';
 
 @Component({
   selector: 'app-products',
@@ -15,13 +16,14 @@ export class ProductsComponent implements OnInit {
     products: Product[] = [];
     currentUser: User | undefined;
     isAdmin: boolean = false;
+    isCustomer: boolean = false;
+    currentUserType: UserType = UserType.Guest;
 
   constructor(private productService: ProductService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.getProducts();
-    // this.loginService.getCurrentUser().subscribe(user => this.currentUser = user);
-    // this.loginService.isAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
+    this.getCurrentUser();
     }
 
   getProducts(): void {
@@ -29,6 +31,14 @@ export class ProductsComponent implements OnInit {
     .subscribe(products => this.products = products);
   }
 
+  getCurrentUser(): void{
+    this.loginService.getCurrentUser()
+    .subscribe(current => {this.currentUser = current
+    this.currentUserType = this.currentUser.userType;
+    this.isAdmin = (this.currentUserType.toString() === UserType[UserType.Admin]);
+    this.isCustomer = (this.currentUserType.toString() === UserType[UserType.Customer]);
+  });
+  }
 
   add(name: string): void {
     name = name.trim();

@@ -20,6 +20,8 @@ export class ProductDetailComponent implements OnInit {
   product: Product | undefined;
   currentUser: User | undefined;
   isAdmin: boolean = false;
+  isCustomer: boolean = false;
+  currentUserType: UserType = UserType.Guest;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,8 +34,6 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.getCurrentUser();
-    // this.loginService.getCurrentUser().subscribe(user => this.currentUser = user);
-    this.loginService.isAdmin().subscribe(status => this.isAdmin = status);
   }
 
   getProduct(): void {
@@ -44,7 +44,17 @@ export class ProductDetailComponent implements OnInit {
 
   getCurrentUser(): void {
     this.loginService.getCurrentUser()
-    .subscribe(current => this.currentUser = current);
+    .subscribe(current => {this.currentUser = current
+    // this.log(`currentDETAIL=${this.currentUser.userType}`)
+    // this.loginService.isAdmin(this.currentUser)
+    // .subscribe(status => {this.isAdmin = status});
+    this.currentUserType = this.currentUser.userType;
+    // this.log(`currentType=${this.currentUserType}`);
+    this.isAdmin = (this.currentUserType.toString() === UserType[UserType.Admin]);
+    this.isCustomer = (this.currentUserType.toString() === UserType[UserType.Customer]);
+    // this.log(`isadmin:${this.isAdmin}`)
+    // this.log(`iscust:${this.isCustomer}`)
+  });
   }
 
   goBack(): void {
@@ -56,6 +66,10 @@ export class ProductDetailComponent implements OnInit {
       this.productService.updateProduct(this.product)
         .subscribe(() => this.goBack());
     }
+  }
+
+  cart(): void {
+
   }
 
   private log(message: string) {

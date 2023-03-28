@@ -1,6 +1,5 @@
 <div *ngIf="product">
     <h2>{{product.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{product.id}}</div>
     <div>
       <label for="product-name">Product name: </label>
       <input id="product-name" *ngIf="isAdmin; else customerName" [(ngModel)]="product.name" placeholder="Product name"/><br>
@@ -9,6 +8,8 @@
       <input type="number" id="product-number" *ngIf="isAdmin; else customerNum" [(ngModel)]="product.number" placeh  older="Product number"/>
       <ng-template #customerNum id="product-number" >{{product.number}}</ng-template>
     </div>
+    <div><span>id: </span>{{product.id}}</div>
     <button type="button" (click)="goBack()">go back</button>
     <button type="button" *ngIf="isAdmin" (click)="save()" >save</button>
+    <button type="button" *ngIf="isCustomer" (click)="cart()" >add to cart</button>
   </div>

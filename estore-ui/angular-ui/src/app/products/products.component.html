@@ -3,7 +3,7 @@
 <ul class="products">
   <li *ngFor="let product of products">
     <a routerLink="/detail/{{product.id}}">
-      <span class="badge">{{product.id}}</span> {{product.name}}
+      <span class="badge" *ngIf="isAdmin" >id: {{product.id}}</span> {{product.name}}
     </a>
     <button type="button" class="delete" title="delete product" *ngIf="isAdmin"
       (click)="delete(product)">x</button>
