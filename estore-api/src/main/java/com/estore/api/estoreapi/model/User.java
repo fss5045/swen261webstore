@@ -17,7 +17,13 @@ public class User {
     @JsonProperty("cart")
     private ArrayList<Product> cart;
     
-    // private ProductDAO productDao;
+    // empty constructor - should only be used to create an empty guest in loginController
+    public User(){
+        this.username = null;
+        this.id = -99;
+        this.userType = UserType.Guest;
+        this.cart = null;
+    }
 
     @JsonCreator
     public User(@JsonProperty("username") String username, @JsonProperty("id") int id){
@@ -68,11 +74,4 @@ public class User {
         this.cart = cart;
     }
 
-    // public void addToCart(int id) throws IOException{
-    //     this.cart.add(productDao.getProduct(id));
-    // }
-    
-    // public void removeFromCart(int id) throws IOException{
-    //     this.cart.remove(productDao.getProduct(id));
-    // }
 }
