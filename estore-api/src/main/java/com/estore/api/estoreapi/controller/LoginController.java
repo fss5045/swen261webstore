@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
+
+import javax.lang.model.type.NullType;
 
 import com.estore.api.estoreapi.model.*;
 import com.estore.api.estoreapi.model.Enums.UserType;
@@ -18,7 +21,7 @@ import com.estore.api.estoreapi.model.Enums.UserType;
 public class LoginController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserController userController;
-    public  User currentUser;
+    public User currentUser;
 
     public LoginController(UserController userController){
         this.userController = userController;
@@ -57,4 +60,13 @@ public class LoginController {
         return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 
+    @GetMapping("/current")
+    public ResponseEntity<User> getCurrentUser(){
+        LOG.info("GET /current");
+        if(currentUser != null){
+            LOG.info("current user: " + currentUser.getUsername());
+            return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+        }
+        return new ResponseEntity<User>(new User(), HttpStatus.OK);
+    }
 }
