@@ -1,36 +1,12 @@
-<style>
-    div {
-    display: flex;
-    align-items: center;
-  }
-  input[type="text"] {
-    height: 40px;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 1px 1px 2px #ccc;
-  }
-  button {
-    height: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 1px 1px 2px #ccc;
-    background-color: #4CAF50;
-    color: white;
-  }
-</style>
 <head>
-    <h2>Login Page</h2>
+    <h2>Login</h2>
 </head>
 <body>
-    <div>
-        <form action="Script_URL" method="Get|Post">Enter Username
-            <input type="Username" name = "name_attribute">
-            <a href = "app.component.html">
-                <button>Login</button>
-            </a>
-        </form>
+    <div class = "body">
+      <label for="username">Enter Username: </label>
+      <input id="username"/>
+      <a href = "../index.html">
+          <button type="button" (click)="login">Login</button>
+      </a>
     </div>
 </body>
