@@ -5,10 +5,10 @@
     <div class = "body" *ngIf="!isAdmin && !isCustomer">
         <label for="username">Enter Username: </label>
         <input id="username" [(ngModel)]="name"/>
-        <button type="button" (click)="login(name)"><a routerLink="/dashboard">Login</a></button>
+        <button type="button" (click)="login(name)">Login</button>
     </div>
     <div class = "body" *ngIf="isAdmin || isCustomer">
-        <label>You're already logged in:</label>
+        <label>You're already logged in as: {{currentUser?.username}}</label>
         <button type="button" (click)="logout()">Logout</button>
     </div>
 </body>

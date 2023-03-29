@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { User } from '../user';
 import { UserType } from '../user.type';
@@ -23,7 +24,8 @@ export class LoginPageComponent implements OnInit{
     private route: ActivatedRoute,
     private loginService: LoginService,
     private messageService: MessageService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class LoginPageComponent implements OnInit{
     // this.log(`username: ${username}`);
     this.loginService.login(username)
     .subscribe(user => this.log(`${user.username} logged in`));
+    this.router.navigate(["/dashboard"])
   }
 
   logout(): void {
