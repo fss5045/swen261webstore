@@ -3,11 +3,6 @@ geometry: margin=1in
 ---
 # PROJECT Design Documentation
 
-> _The following template provides the headings for your Design
-> Documentation.  As you edit each section make sure you remove these
-> commentary 'blockquotes'; the lines that start with a > character
-> and appear in the generated PDF in italics._
-
 ## Team Information
 * Team name: name
 * Team members
@@ -17,20 +12,14 @@ geometry: margin=1in
   * PJ Esterly
 
 ## Executive Summary
-
 This is a summary of the project.
 
 This project is an e-store application with minimal functionality, security, and presistance.
 
 ### Purpose
-> _Provide a very brief statement about the project and the most
-> important user group and user goals._
-
 The project is an e-store application that will allow the customer(s) to shop for certain sports balls with the goal of having an easy shopping expereince and the ability to log out and login without their data disappearing.
 
 ### Glossary and Acronyms
-> _Provide a table of terms and acronyms._
-
 | Term | Definition                        |
 |------|-----------------------------------|
 | SPA  | Single Page                       |
@@ -39,12 +28,7 @@ The project is an e-store application that will allow the customer(s) to shop fo
 | HTML | Hypertext Markup Language         |
 
 ## Requirements
-
 This section describes the features of the application.
-
-> _In this section you do not need to be exhaustive and list every
-> story. Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
 
 -Login Page
 -Unique Admin and User Pages
@@ -54,13 +38,10 @@ This section describes the features of the application.
 -Shopping Cart
 
 ### Definition of MVP
-> _Provide a simple description of the Minimum Viable Product._
 
 The MVP will have the following functionality: minimal authentucation for users (owner and custmoer and only usernames), customer functionality including viewing products, a shopping cart, and a checkout, inventory management, and data persistance.
 
 ### MVP Features
-> _Provide a list of top-level Epics and/or Stories of the MVP._
-
 -Inventory
   -Add
   -Remove
@@ -78,8 +59,6 @@ The MVP will have the following functionality: minimal authentucation for users 
   -Search products
 
 ### Roadmap of Enhancements
-> _Provide a list of top-level features in the order you plan to consider them._
-
 -Inventory Management
 -Browse
 -Login
@@ -91,13 +70,9 @@ The MVP will have the following functionality: minimal authentucation for users 
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](domain-model.png)
 
-> _Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
-
-Figure out how to insert a third party file into this project
+The domain for this application consists of the user, owner, inventory, product browsablilty, and login function as the large features for this application. The domain model helps to illustrate how these features interact with each other and includes some smaller sub-features and how they interact with each other and the large features.
 
 ## Architecture and Design
 
