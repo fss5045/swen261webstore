@@ -42,14 +42,13 @@ export class LoginPageComponent implements OnInit{
     // this.log(`username: ${username}`);
     this.loginService.login(username)
     .subscribe(user => this.log(`${user.username} logged in`));
-    this.goBack();
   }
 
   logout(): void {
     // this.log(`logging out`);
     this.loginService.logout()
     .subscribe(status => this.log(`logged out: ${status}`));
-    this.goBack();
+    window.location.reload()
   }
 
   goBack(): void {

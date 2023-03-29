@@ -5,7 +5,7 @@
     <div class = "body" *ngIf="!isAdmin && !isCustomer">
         <label for="username">Enter Username: </label>
         <input id="username" [(ngModel)]="name"/>
-        <button type="button" (click)="login(name)">Login</button>
+        <button type="button" (click)="login(name)"><a routerLink="/dashboard">Login</a></button>
     </div>
     <div class = "body" *ngIf="isAdmin || isCustomer">
         <label>You're already logged in:</label>

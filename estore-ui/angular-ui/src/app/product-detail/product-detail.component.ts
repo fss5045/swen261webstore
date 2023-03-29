@@ -73,7 +73,8 @@ export class ProductDetailComponent implements OnInit {
   addToCart(id: number): void {
     if (this.product){
       this.log(`adding`)
-      this.cartService.add(id);
+      this.cartService.add(id)
+      .subscribe(user => this.log(`added ${id} to ${user.username}'s cart`));
     }
   }
 

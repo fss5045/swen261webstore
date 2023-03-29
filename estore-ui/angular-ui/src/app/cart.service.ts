@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpSentEvent } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -11,11 +11,10 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class CartService {
 
-  private url = 'http://localhost:8080';  // URL to web api
+  private cartUrl = 'http://localhost:8080/cart';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-
   };
 
   constructor(
@@ -23,25 +22,27 @@ export class CartService {
     private messageService: MessageService) { }
 
     /** PUT: add item to cart*/
-    add(id: number): Observable<any> {
-        const url = `${this.url}/cart`;
-        this.log(`adding ${id} to url ${url}`);
-        return this.http.put<User>(url, id, this.httpOptions).pipe(
-            tap((user: User) => {
-                this.log(`added product ${id}, new quantity: ${user.cart[id]}`);
-            }),
+    add(id: number): Observable<User> {
+        this.log(`adding ${id} to url ${this.cartUrl}`);
+        return this.http.put<User>(this.cartUrl, id, this.httpOptions).pipe(
+            tap((user: User) => {this.log(`added product ${id} to ${user.username}'s cart`)}),
             catchError(this.handleError<User>(`addCart`))
         );
     }
     
     
     /** DELETE: add item to cart*/
-    // remove(id: number): Observable<User> {
-    //     return this.http.delete<User>(this.cartUrl,id).pipe(
-    //         tap((user: User) => this.log(`removed ${id} to cart of ${user.username}`)),
-    //         catchError(this.handleError<User>('addToCart'))
-    //     );
-    // }
+    remove(id: number): Observable<User> {
+      const options = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        body: id
+      };
+      this.log(`adding ${id} to url ${this.cartUrl}`);
+      return this.http.delete<User>(this.cartUrl, options).pipe(
+        tap((user: User) => {this.log(`removing product ${id} from ${user.username}'s cart`)}),
+        catchError(this.handleError<User>(`removeCart`))
+      )
+    }
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {

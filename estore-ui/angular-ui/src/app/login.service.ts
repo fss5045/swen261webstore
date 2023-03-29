@@ -51,21 +51,6 @@ export class LoginService {
         );
     }
 
-    // isAdmin(user: User | undefined): Observable<boolean> {
-    //   let bool: boolean = false;
-    //   if(user == undefined){
-    //     // this.log(`undef`)
-    //     bool = false;
-    //   }
-    //   else if(user.userType.toString() === UserType[UserType.Admin]){
-    //     bool = true;
-    //   }
-    //   return of(bool).pipe(
-    //     tap((status: boolean) => this.log(`admin status =${status}`)),
-    //     catchError(this.handleError<boolean>('isAdmin'))
-    //   )
-    // }
-
     /**
    * Handle Http operation that failed.
    * Let the app continue.

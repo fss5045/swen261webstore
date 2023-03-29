@@ -13,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsSearchComponent } from './product-search/product-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ProductDetailComponent,
     MessagesComponent,
     ProductsSearchComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ShoppingCartComponent
   ],
   bootstrap: [ AppComponent ]
 })
