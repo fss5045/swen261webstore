@@ -78,6 +78,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   private log(message: string) {
-    this.messageService.add(`DetialComponent: ${message}`);
+    this.messageService.add(`DetailComponent: ${message}`);
   }
 }

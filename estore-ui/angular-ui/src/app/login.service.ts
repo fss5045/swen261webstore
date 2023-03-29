@@ -25,6 +25,7 @@ export class LoginService {
     
     /** POST: login */
     login(username: string): Observable<User> {
+      // this.log(`logging in`);
       const url = `${this.url}/login`;
       return this.http.post<User>(url, username, this.httpOptions).pipe(
         tap((user: User) => this.log(`logged in w/ username =${user.username}`)),
@@ -35,7 +36,8 @@ export class LoginService {
     /** PATCH: logout */
     logout(): Observable<boolean> {
       const url = `${this.url}/logout`;
-      return this.http.patch<boolean>(url, this.httpOptions).pipe(
+      // this.log(`logging out`);
+      return this.http.patch<boolean>(url, null).pipe(
         tap((status: boolean) => this.log(`logged out w/ status =${status}`)),
         catchError(this.handleError<boolean>('logout'))
         );

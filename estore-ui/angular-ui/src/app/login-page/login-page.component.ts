@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { User } from '../user';
+import { UserType } from '../user.type';
+import { LoginService } from '../login.service';
+
+import { MessageService } from '../message.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,20 +14,49 @@ import { Location } from '@angular/common';
   styleUrls: [ './login-page.component.css' ]
 })
 export class LoginPageComponent implements OnInit{
+  currentUser: User | undefined;
+  isAdmin: boolean = false;
+  isCustomer: boolean = false;
+  name: string = "";
 
-    constructor(
-        private route: ActivatedRoute,
-        private location: Location
-      ) {}
-    
-    ngOnInit(): void {
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private messageService: MessageService,
+    private location: Location
+  ) {}
 
-    login(): void {
-        this.goBack
-    }
+  ngOnInit(): void {
+    this.getCurrentUser();
+  }
 
-    goBack(): void {
-       this.location.back();
-    }
+  getCurrentUser(): void {
+    this.loginService.getCurrentUser()
+    .subscribe(current => {this.currentUser = current
+    this.isAdmin = (this.currentUser.userType.toString() === UserType[UserType.Admin]);
+    this.isCustomer = (this.currentUser.userType.toString() === UserType[UserType.Customer]);
+  });
+  }
+
+  login(username: string): void {
+    // this.log(`username: ${username}`);
+    this.loginService.login(username)
+    .subscribe(user => this.log(`${user.username} logged in`));
+    this.goBack();
+  }
+
+  logout(): void {
+    // this.log(`logging out`);
+    this.loginService.logout()
+    .subscribe(status => this.log(`logged out: ${status}`));
+    this.goBack();
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  private log(message: string) {
+    this.messageService.add(`loginPage: ${message}`);
+  }
 }
