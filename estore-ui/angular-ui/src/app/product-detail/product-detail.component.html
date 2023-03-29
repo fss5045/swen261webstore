@@ -11,5 +11,5 @@
     <div><span>id: </span>{{product.id}}</div>
     <button type="button" (click)="goBack()">go back</button>
     <button type="button" *ngIf="isAdmin" (click)="save()" >save</button>
-    <button type="button" *ngIf="isCustomer" (click)="cart()" >add to cart</button>
+    <button type="button" *ngIf="isCustomer" (click)="addToCart(product.id)" >add to cart</button>
   </div>

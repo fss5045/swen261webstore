@@ -8,6 +8,7 @@ import { ProductService } from '../product.service';
 import {User} from '../user';
 import { LoginService } from '../login.service';
 import { UserType } from '../user.type';
+import { CartService } from '../cart.service';
 
 import { MessageService } from '../message.service'
 
@@ -28,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private location: Location,
     private loginService: LoginService,
+    private cartService: CartService,
     private messageService: MessageService
   ) {}
 
@@ -68,11 +70,14 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  cart(): void {
-
+  addToCart(id: number): void {
+    if (this.product){
+      this.log(`adding`)
+      this.cartService.add(id);
+    }
   }
 
   private log(message: string) {
-    this.messageService.add(`LoginService: ${message}`);
+    this.messageService.add(`DetialComponent: ${message}`);
   }
 }
