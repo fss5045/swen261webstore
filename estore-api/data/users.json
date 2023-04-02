@@ -1,1 +1,1 @@
-[{"username":"admin","id":0,"userType":"Admin","cart":null},{"username":"bob","id":3,"userType":"Customer","cart":[]},{"username":"finn","id":1,"userType":"Customer","cart":[]},{"username":"pj","id":4,"userType":"Customer","cart":[]}]
+[{"username":"admin","id":0,"userType":"Admin","cart":null},{"username":"bob","id":3,"userType":"Customer","cart":[]},{"username":"finn","id":1,"userType":"Customer","cart":[{"id":1,"name":"basketball","number":22,"price":35,"sport":"","color":""}]},{"username":"pj","id":4,"userType":"Customer","cart":[]}]

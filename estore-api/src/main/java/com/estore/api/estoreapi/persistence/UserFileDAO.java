@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +22,7 @@ public class UserFileDAO implements UserDAO{
     private ObjectMapper objectMapper;
     private static int nextId;
     private String filename;
+    private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
 
     public UserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException{
         this.filename = filename;
@@ -160,14 +165,14 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User updateUser(User user) throws IOException{
         synchronized(users) {
-            if (users.containsKey(user.getUsername())) {
+            if (users.containsKey(user.getUsername()) == false)
                 return null;
-            }
-            else
-                //update users
-                users.put(user.getUsername(), user);
-                save();
-                return user;
+            
+            //update users
+            LOG.info("updating user");
+            users.put(user.getUsername(), user);
+            save();
+            return user;
         }
     }
     
