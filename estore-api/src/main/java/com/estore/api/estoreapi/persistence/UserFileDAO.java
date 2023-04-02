@@ -153,5 +153,22 @@ public class UserFileDAO implements UserDAO{
                 return false;
         }
     }
+
+    /**
+    ** {@inheritDoc}}
+     */
+    @Override
+    public User updateUser(User user) throws IOException{
+        synchronized(users) {
+            if (users.containsKey(user.getUsername())) {
+                return null;
+            }
+            else
+                //update users
+                users.put(user.getUsername(), user);
+                save();
+                return user;
+        }
+    }
     
 }

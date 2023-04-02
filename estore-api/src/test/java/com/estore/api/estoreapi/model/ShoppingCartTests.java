@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import com.estore.api.estoreapi.persistence.ProductDAO;
+import com.estore.api.estoreapi.persistence.UserDAO;
 import com.estore.api.estoreapi.model.ShoppingCart;
-import com.estore.api.estoreapi.model.User;
 
 
 /**
@@ -28,21 +28,23 @@ import com.estore.api.estoreapi.model.User;
 public class ShoppingCartTests{
   private ProductDAO mockProductDAO;
   private ShoppingCart shoppingCart;
+  private UserDAO mockUserDAO;
 
   @BeforeEach
   public void setupShoppingCart(){
+    mockUserDAO = mock(UserDAO.class);
     mockProductDAO = mock(ProductDAO.class);
-    shoppingCart = new ShoppingCart(mockProductDAO);
+    shoppingCart = new ShoppingCart(mockProductDAO, mockUserDAO);
 
   }
     @Test
     public void testConstructor(){
         // Setup
-        String expectedUsername = "test";
-        int expectedId = 1;
+        // String expectedUsername = "test";
+        // int expectedId = 1;
         
         // Invoke
-        ShoppingCart result = new ShoppingCart(mockProductDAO);
+        ShoppingCart result = new ShoppingCart(mockProductDAO, mockUserDAO);
 
         // Analyze
         assertEquals(ShoppingCart.class, result.getClass());

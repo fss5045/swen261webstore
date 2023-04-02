@@ -50,4 +50,16 @@ public interface UserDAO {
      */
     boolean deleteUser(String username) throws IOException;
 
+    /**
+     * Updates and saves a {@link User user}
+     * 
+     * @param user the {@link User user} to update
+     * 
+     * @return updated {@link User user} if successful, null if
+     * {@link User user} could not be found
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    User updateUser(User user) throws IOException;
+
 }
