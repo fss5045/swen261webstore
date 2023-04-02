@@ -1,6 +1,6 @@
 package com.estore.api.estoreapi.model;
 
-import java.util.logging.Logger;
+// import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author fss5045@rit.edu
  */
 public class Product{
-    private static final Logger LOG = Logger.getLogger(Product.class.getName());
+    // private static final Logger LOG = Logger.getLogger(Product.class.getName());
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;

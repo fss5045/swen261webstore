@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Logger;
+// import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import com.estore.api.estoreapi.model.Product;;
 
 @Component
 public class ProductFileDAO implements ProductDAO {
-    private static final Logger LOG = Logger.getLogger(ProductFileDAO.class.getName());
+    // private static final Logger LOG = Logger.getLogger(ProductFileDAO.class.getName());
     Map<Integer,Product> products;   // Provides a local cache of the product objects
                                 // so that we don't need to read from the file
                                 // each time
