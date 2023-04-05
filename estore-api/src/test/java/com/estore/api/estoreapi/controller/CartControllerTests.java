@@ -43,7 +43,7 @@ public class CartControllerTests {
         User user = new User("Tashi", 2);
         testLoginController = new LoginController(testUserController);
         testLoginController.currentUser = user;
-        testShoppingCart = new ShoppingCart(testProductDAO);
+        testShoppingCart = new ShoppingCart(testProductDAO, testUserDAO);
         testCartController = new CartController(testProductDAO,testLoginController,testShoppingCart);
     }
 
