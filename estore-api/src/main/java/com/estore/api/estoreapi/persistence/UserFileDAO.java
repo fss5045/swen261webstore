@@ -171,6 +171,7 @@ public class UserFileDAO implements UserDAO{
             LOG.info("updating user");
             users.put(user.getUsername(), user);
             save();
+            // LOG.info(user.getCart().toString());
             return user;
         }
     }

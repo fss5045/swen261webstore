@@ -120,4 +120,16 @@ public class Product{
     public String toString() {
         return String.format(STRING_FORMAT,id,name, number, price, sport, color);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Product)){
+            return false;
+        }
+        Product o = (Product) other;
+        return this.id == o.id;
+    }
 }

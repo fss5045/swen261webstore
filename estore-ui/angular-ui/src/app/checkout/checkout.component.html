@@ -1,0 +1,13 @@
+<ul class="checkout-products">
+    <li *ngFor="let item of cart">
+        <div *ngIf="item">
+            <label class="name">{{item.name}}: </label>
+            <br>
+            <label class="info"> {{item.color}} / ${{item.price}} </label>
+          </div>
+    </li>
+</ul>
+<input type="text" id="discount" placeholder="Discount Code">
+<p>Subtotal: {{subtotal}}</p>
+<h3>Total: {{subtotal}}</h3>
+<button type="button" class="checkout" (click)="checkout()">Checkout</button>
