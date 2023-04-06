@@ -2,18 +2,32 @@
 
 <ul class="products">
   <li *ngFor="let product of products">
-    <a routerLink="/detail/{{product.id}}">
-      <span class="badge" *ngIf="isAdmin" >id: {{product.id}}</span> {{product.name}}
-    </a>
-    <button type="button" class="delete" title="delete product" *ngIf="isAdmin"
-      (click)="delete(product)">x</button>
+    <div *ngIf="isAdmin; else customer">
+      <a routerLink="/detail/{{product.id}}">
+        <span class="badge">id: {{product.id}}</span> {{product.name}}: {{product.number}} left
+      </a>
+      <button type="button" class="delete" title="delete product" *ngIf="isAdmin"
+        (click)="delete(product)">x</button>
+    </div>
+    <ng-template #customer>
+      <div *ngIf="product.number > 0">
+        <a routerLink="/detail/{{product.id}}">
+          {{product.name}}
+        </a>
+      </div>
+      <div *ngIf="product.number < 1">
+        <a routerLink="/detail/{{product.id}}">
+          SOLD OUT: {{product.name}}
+        </a>
+      </div>
+    </ng-template>
+    
   </li>
 </ul>
 
 <div *ngIf="isAdmin">
-  <label for="new-product">Product name: </label>
+  <label for="new-product">New Product name: </label>
   <input id="new-product" #productName />
-
   <!-- (click) passes input value to add() and then clears the input -->
   <button type="button" class="add-button" (click)="add(productName.value); productName.value=''">
     Add product

@@ -1,20 +1,22 @@
-<h2 *ngIf="isCustomer; else noCart">{{currentUser?.username}}'s Cart</h2>
-<ul class="items">
-  <li *ngFor="let item of cart">
-    <div *ngIf="item">
-      <label class="name">{{item.name}}: </label>
-      <label class="price">${{item.price}} </label>
-      <label class="number">({{item.number}} left)</label><br>
-      <button type="button" class="remove" title="remove" (click)="removeFromCart(item)">remove</button>
-    </div>
-  </li>
-</ul> 
-<button *ngIf="isCustomer && cart.length > 0; else emptyCart" type="button" class="checkout"><a routerLink="/checkout">Checkout</a></button>
-<ng-template #emptyCart>
-  <h3>Your cart is empty</h3>
-  <button type="button"><a routerLink="/products">View products</a></button>
-</ng-template>
-<ng-template #noCart id="noCart">
+<div *ngIf="isCustomer; else notCustomer">
+  <h2>{{currentUser?.username}}'s Cart</h2>
+  <ul class="items">
+    <li *ngFor="let item of cart">
+      <div *ngIf="item">
+        <label class="name">{{item.name}}: </label>
+        <label class="price">${{item.price}} </label>
+        <label class="number">({{item.number}} left)</label><br>
+        <button type="button" class="remove" title="remove" (click)="removeFromCart(item)">remove</button>
+      </div>
+    </li>
+  </ul> 
+  <button *ngIf="cart.length > 0; else emptyCart" type="button" class="checkout"><a routerLink="/checkout">Checkout</a></button>
+  <ng-template #emptyCart>
+    <h3>Your cart is empty</h3>
+    <button type="button"><a routerLink="/products">View products</a></button>
+  </ng-template>
+</div>
+<ng-template #notCustomer id="notCustomer">
   <h2>You're not logged in as a Customer</h2>
   <button type="button"><a routerLink="/login">Login</a></button>
 </ng-template>
