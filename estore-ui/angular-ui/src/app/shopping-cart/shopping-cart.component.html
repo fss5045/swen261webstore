@@ -9,7 +9,11 @@
     </div>
   </li>
 </ul> 
-<button type="button" class="checkout"><a routerLink="/checkout">Checkout</a></button>
+<button *ngIf="isCustomer && cart.length > 0; else emptyCart" type="button" class="checkout"><a routerLink="/checkout">Checkout</a></button>
+<ng-template #emptyCart>
+  <h3>Your cart is empty</h3>
+  <button type="button"><a routerLink="/products">View products</a></button>
+</ng-template>
 <ng-template #noCart id="noCart">
   <h2>You're not logged in as a Customer</h2>
   <button type="button"><a routerLink="/login">Login</a></button>
