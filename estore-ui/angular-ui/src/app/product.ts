@@ -4,5 +4,5 @@ export interface Product {
     number: number;
     price: number;
     sport: string;
-    color: number;
+    color: string;
   }
