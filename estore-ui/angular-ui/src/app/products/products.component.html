@@ -3,11 +3,31 @@
 <button type="button" class="sort" (click)="sortByPriceAsc()">Sort by Price (low to high)</button>
 <button type="button" class="sort" (click)="sortByQuantityDesc()">Sort by Stock (high to low)</button>
 <button type="button" class="sort" (click)="sortByQuantityAsc()">Sort by Stock (low to high)</button>
-<button type="button" class="filter" (click)="filterByColor('red')">Filter by each individual color</button>
-<button type="button" class="sort" (click)="ngOnInit()">reset</button>
-<ul class="products">
+<br>
+<label for="color">Filter by color: </label>
+<select id="color" [(ngModel)]="colorSelect" name="color" #color="ngModel">
+  <option value="">---</option>
+  <option value="orange">Orange</option>
+  <option value="brown">Brown</option>
+  <option value="white">White</option>
+  <option value="yellow">Yellow</option>
+</select>
+<label for="sport">Filter by sport: </label>
+<select id="sport" [(ngModel)]="sportSelect" name="sport" #sport="ngModel">
+  <option value="">---</option>
+  <option value="basketball">Basketball</option>
+  <option value="football">Football</option>
+  <option value="soccer">Soccer</option>
+  <option value="school">School</option>
+  <option value="golf">Golf</option>
+</select>
+<button type="button" class="filter" (click)="filter(this.colorSelect, this.sportSelect)">Filter</button>
 
+<button type="button" class="reset" (click)="ngOnInit()">Reset All Filters</button>
+
+<ul class="products">
   <li *ngFor="let product of products">
+    <div *ngIf="!this.hidden.includes(product)">
     <div *ngIf="isAdmin; else customer">
       <a routerLink="/detail/{{product.id}}">
         <span class="badge">id: {{product.id}}</span> {{product.name}}: {{product.number}} left
@@ -16,6 +36,7 @@
         (click)="delete(product)">x</button>
     </div>
     <ng-template #customer>
+        
       <div *ngIf="product.number > 0">
         <a routerLink="/detail/{{product.id}}">
           {{product.name}}
@@ -27,7 +48,7 @@
         </a>
       </div>
     </ng-template>
-    
+  </div>
   </li>
 </ul>
 

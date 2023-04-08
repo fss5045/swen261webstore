@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
     isAdmin: boolean = false;
     isCustomer: boolean = false;
     currentUserType: UserType = UserType.Guest;
+    colorSelect: String = "";
+    sportSelect: String = "";
 
   constructor(
     private productService: ProductService, 
@@ -84,12 +86,31 @@ export class ProductsComponent implements OnInit {
 
   filterByColor(color : String): void {
     this.hidden = this.products.filter(h => h.color !== color);
-    for(var i of this.hidden){
-      this.log(`${i.name}`)
-    }
   }
   filterBySport(sport : String): void {
     this.hidden = this.products.filter(h => h.sport !== sport);
+  }
+
+  filter(color: String, sport: String): void {
+    this.log(`${color}, ` + `${sport}`);
+    if(this.sportSelect === ""){
+      this.hidden = this.products.filter(h => h.color !== color);
+    }
+    else if(this.colorSelect === ""){
+      this.hidden = this.products.filter(h => h.sport !== sport);
+    }
+    else{
+      var temp: Product[] = [];
+      temp = this.products.filter(h => h.color !== color);
+      for(var i of temp){
+        this.log(`t: ${i.name}`)
+      }
+      this.hidden = this.products.filter(h => h.sport !== sport);
+      this.hidden = this.hidden.concat(temp);
+    }
+    for(var i of this.hidden){
+      this.log(`${i.name}`)
+    }
   }
 
   private log(message: string) {
