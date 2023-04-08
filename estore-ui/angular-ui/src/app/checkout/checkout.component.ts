@@ -7,6 +7,7 @@ import { LoginService } from '../login.service';
 import { CartService } from '../cart.service';
 
 import { MessageService } from '../message.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +24,8 @@ export class CheckoutComponent implements OnInit{
     private productService: ProductService,
     private cartService: CartService,
     private loginService: LoginService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -40,6 +42,11 @@ export class CheckoutComponent implements OnInit{
   });
   }
 
+  getTotal(): number {
+    this.total = this.subtotal;
+    return this.total;
+  }
+
   checkout(): void {
     this.emptyCart();
   }
@@ -52,6 +59,7 @@ export class CheckoutComponent implements OnInit{
       this.cartService.remove(item.id).subscribe();
     }
     // window.location.reload();
+    this.router.navigate(["/done"]);
   }
 
   private log(message: string) {
