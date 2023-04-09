@@ -5,6 +5,20 @@ import java.io.IOException;
 import com.estore.api.estoreapi.model.Discount;
 
 public interface DiscountDAO {
+
+    /**
+     * Retrieves a {@linkplain Discount discount} with the given id
+     * 
+     * @param id The id of the {@link Discount discount} to get
+     * 
+     * @return a {@link Discount producy} object with the matching id
+     * <br>
+     * null if no {@link Discount discount} with a matching id is found
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
+    Discount getDiscount(int id) throws IOException;
+
     /**
      * Retrieves all {@linkplain Discount discounts}
      * 

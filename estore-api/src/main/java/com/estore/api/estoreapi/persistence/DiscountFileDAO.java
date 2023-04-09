@@ -93,6 +93,19 @@ public class DiscountFileDAO implements DiscountDAO{
     }
 
     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Discount getDiscount(int id) {
+        synchronized(codes) {
+            if (codes.containsKey(id))
+                return codes.get(id);
+            else
+                return null;
+        }
+    }
+
+    /**
      * {@inheritDoc}}
      */
     @Override
