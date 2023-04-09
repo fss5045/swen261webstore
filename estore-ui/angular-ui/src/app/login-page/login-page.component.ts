@@ -44,7 +44,7 @@ export class LoginPageComponent implements OnInit{
     // this.log(`username: ${username}`);
     this.loginService.login(username)
     .subscribe(user => this.log(`${user.username} logged in`));
-    this.router.navigate(["/dashboard"])
+    window.location.reload();
   }
 
   logout(): void {

@@ -16,6 +16,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutDoneComponent } from './checkout-done/checkout-done.component';
+import { CodesComponent } from './codes/codes.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { CheckoutDoneComponent } from './checkout-done/checkout-done.component';
     LoginPageComponent,
     ShoppingCartComponent,
     CheckoutComponent,
-    CheckoutDoneComponent
+    CheckoutDoneComponent,
+    CodesComponent
   ],
   bootstrap: [ AppComponent ]
 })

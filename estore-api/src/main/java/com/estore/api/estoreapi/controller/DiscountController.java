@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import com.estore.api.estoreapi.model.Discount;
 import com.estore.api.estoreapi.model.Enums.UserType;
 
 @RestController
-@RequestMapping("discount")
+@RequestMapping("discounts")
 public class DiscountController {
     private static final Logger LOG = Logger.getLogger(DiscountController.class.getName());
     private DiscountDAO discountDao;
@@ -41,11 +41,11 @@ public class DiscountController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<Discount> getDiscount(@PathVariable int id) {
-        LOG.info("GET /discounts/" + id);
+    @GetMapping("/{name}")
+    public ResponseEntity<Discount> getDiscount(@PathVariable String name) {
+        LOG.info("GET /discounts/" + name);
         try {
-            Discount discount = discountDao.getDiscount(id);
+            Discount discount = discountDao.getDiscount(name);
             if (discount != null)
                 return new ResponseEntity<Discount>(discount,HttpStatus.OK);
             else
@@ -57,7 +57,9 @@ public class DiscountController {
         }
     }
 
+    @GetMapping("")
     public ResponseEntity<Discount[]> getDiscounts(){
+        LOG.info("GET /discounts");
         try {
             return new ResponseEntity<Discount[]>(discountDao.getDiscounts(),HttpStatus.OK);
         }
@@ -77,7 +79,7 @@ public class DiscountController {
             return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
         }
         try {
-            if (discountDao.getDiscount(discount.getId()) != null)
+            if (discountDao.getDiscount(discount.getName()) != null)
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             else{
                 Discount newDiscount = discountDao.createDiscount(discount);
@@ -131,9 +133,9 @@ public class DiscountController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Discount> deleteDiscount(@PathVariable int id) {
-        LOG.info("DELETE /discounts/" + id);
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Discount> deleteDiscount(@PathVariable String name) {
+        LOG.info("DELETE /discounts/" + name);
 
         // Replace below with your implementation
         if(loginController.currentUser.getUserType() != UserType.Admin){
@@ -141,7 +143,7 @@ public class DiscountController {
         return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
         }
         try {
-            if (discountDao.deleteDiscount(id)){
+            if (discountDao.deleteDiscount(name)){
                 return new ResponseEntity<>(HttpStatus.OK);
             }
             else

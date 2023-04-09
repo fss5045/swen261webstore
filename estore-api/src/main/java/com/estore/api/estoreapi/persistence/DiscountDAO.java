@@ -7,17 +7,17 @@ import com.estore.api.estoreapi.model.Discount;
 public interface DiscountDAO {
 
     /**
-     * Retrieves a {@linkplain Discount discount} with the given id
+     * Retrieves a {@linkplain Discount discount} with the given name
      * 
-     * @param id The id of the {@link Discount discount} to get
+     * @param name The name of the {@link Discount discount} to get
      * 
-     * @return a {@link Discount producy} object with the matching id
+     * @return a {@link Discount producy} object with the matching name
      * <br>
-     * null if no {@link Discount discount} with a matching id is found
+     * null if no {@link Discount discount} with a matching name is found
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Discount getDiscount(int id) throws IOException;
+    Discount getDiscount(String name) throws IOException;
 
     /**
      * Retrieves all {@linkplain Discount discounts}
@@ -33,7 +33,7 @@ public interface DiscountDAO {
      * 
      * @param discount {@linkplain Discount discount} object to be created and saved
      * <br>
-     * The id of the discount object is ignored and a new uniqe id is assigned
+     * The name of the discount object is ignored and a new uniqe name is assigned
      *
      * @return new {@link Discount discount} if successful, false otherwise 
      * 
@@ -54,15 +54,15 @@ public interface DiscountDAO {
     Discount updateDiscount(Discount discount) throws IOException;
 
     /**
-     * Deletes a {@linkplain Discount discount} with the given id
+     * Deletes a {@linkplain Discount discount} with the given name
      * 
-     * @param id The id of the {@link Discount discount}
+     * @param name The name of the {@link Discount discount}
      * 
      * @return true if the {@link Discount discount} was deleted
      * <br>
-     * false if discount with the given id does not exist
+     * false if discount with the given name does not exist
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteDiscount(int id) throws IOException;
+    boolean deleteDiscount(String name) throws IOException;
 }

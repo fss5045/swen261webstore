@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
 
   getCurrentUser(): void{
     this.loginService.getCurrentUser()
-    .subscribe(current => {this.currentUser = current
+    .subscribe(current => {this.currentUser = current;
     this.currentUserType = this.currentUser.userType;
     this.isAdmin = (this.currentUserType.toString() === UserType[UserType.Admin]);
     this.isCustomer = (this.currentUserType.toString() === UserType[UserType.Customer]);

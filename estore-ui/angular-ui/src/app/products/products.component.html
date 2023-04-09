@@ -36,7 +36,6 @@
         (click)="delete(product)">x</button>
     </div>
     <ng-template #customer>
-        
       <div *ngIf="product.number > 0">
         <a routerLink="/detail/{{product.id}}">
           {{product.name}}

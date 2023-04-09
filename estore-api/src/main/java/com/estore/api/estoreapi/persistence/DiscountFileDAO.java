@@ -15,7 +15,7 @@ import com.estore.api.estoreapi.model.Discount;
 
 @Component
 public class DiscountFileDAO implements DiscountDAO{
-    Map<Integer,Discount> codes;
+    Map<String,Discount> codes;
     private static int nextId;
     private ObjectMapper objectMapper;
     private String filename;
@@ -66,7 +66,7 @@ public class DiscountFileDAO implements DiscountDAO{
 
         // Add each discount to the tree map and keep track of the greatest id
         for (Discount code : codeArray) {
-            codes.put(code.getId(), code);
+            codes.put(code.getName(), code);
             if (code.getId() > nextId)
                 nextId = code.getId();
         }
@@ -96,10 +96,10 @@ public class DiscountFileDAO implements DiscountDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Discount getDiscount(int id) {
+    public Discount getDiscount(String name) {
         synchronized(codes) {
-            if (codes.containsKey(id))
-                return codes.get(id);
+            if (codes.containsKey(name))
+                return codes.get(name);
             else
                 return null;
         }
@@ -124,7 +124,7 @@ public class DiscountFileDAO implements DiscountDAO{
             // We create a new discount object because the id field is immutable
             // and we need to assign the next unique id
             Discount newCode = new Discount(nextId, discount.getName(), discount.getAmount());
-            codes.put(newCode.getId(),newCode);
+            codes.put(newCode.getName(),newCode);
             save(); // may throw an IOException
             return newCode;
         }
@@ -136,12 +136,12 @@ public class DiscountFileDAO implements DiscountDAO{
     @Override
     public Discount updateDiscount(Discount discount) throws IOException{
         synchronized(codes) {
-            if (codes.containsKey(discount.getId()) == false)
+            if (codes.containsKey(discount.getName()) == false)
                 return null;
             
             //update discounts
             LOG.info("updating discount");
-            codes.put(discount.getId(), discount);
+            codes.put(discount.getName(), discount);
             save();
             // LOG.info(discount.getCart().toString());
             return discount;
@@ -152,10 +152,10 @@ public class DiscountFileDAO implements DiscountDAO{
      * {@inheritDoc}}
      */
     @Override
-    public boolean deleteDiscount(int id) throws IOException{
+    public boolean deleteDiscount(String name) throws IOException{
         synchronized(codes) {
-            if (codes.containsKey(id)) {
-                codes.remove(id);
+            if (codes.containsKey(name)) {
+                codes.remove(name);
                 return save();
             }
             else

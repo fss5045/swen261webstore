@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service'
 import { User } from '../user';
+import { Discount } from '../discount';
+import { DiscountService } from '../discount.service';
 import { LoginService } from '../login.service';
 import { CartService } from '../cart.service';
 
@@ -19,11 +21,15 @@ export class CheckoutComponent implements OnInit{
   cart: Product[] = [];
   subtotal: number = 0;
   total: number = 0;
+  discountCode: string = "";
+  amount: number = 0;
+  applied: boolean = false;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
     private loginService: LoginService,
+    private discountService: DiscountService,
     private messageService: MessageService,
     private router: Router
   ){}
@@ -41,6 +47,17 @@ export class CheckoutComponent implements OnInit{
     }
     this.total = this.subtotal;
   });
+  }
+
+  applyDiscount(): void{
+    this.discountCode = this.discountCode.toUpperCase();
+    this.log(`code: ${this.discountCode}`)
+    this.discountService.getDiscount(this.discountCode).subscribe(discount => {
+      this.log(`amount: ${discount.amount}`);
+      this.amount = discount.amount;
+      this.total = this.subtotal - ((this.subtotal/100) * this.amount);
+      this.applied = true;
+    });
   }
 
   getTotal(): number {
