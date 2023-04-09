@@ -21,8 +21,8 @@
   <option value="school">School</option>
   <option value="golf">Golf</option>
 </select>
-<button type="button" class="filter" (click)="filter(this.colorSelect, this.sportSelect)">Filter</button>
 
+<button type="button" class="filter" (click)="filter(this.colorSelect, this.sportSelect)">Filter</button>
 <button type="button" class="reset" (click)="ngOnInit()">Reset All Filters</button>
 
 <ul class="products">
@@ -36,7 +36,6 @@
         (click)="delete(product)">x</button>
     </div>
     <ng-template #customer>
-        
       <div *ngIf="product.number > 0">
         <a routerLink="/detail/{{product.id}}">
           {{product.name}}
