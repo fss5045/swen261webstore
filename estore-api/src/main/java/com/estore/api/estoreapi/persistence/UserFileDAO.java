@@ -47,7 +47,7 @@ public class UserFileDAO implements UserDAO{
      * If containsText is null, the array contains all of the {@linkplain User user}
      * in the tree map
      * 
-     * @return  The array of {@link Product product}, may be empty
+     * @return  The array of {@link User user}, may be empty
      */
     private User[] getUsersArray() { // if containsText == null, no filter
         ArrayList<User> userArrayList = new ArrayList<>();
@@ -60,9 +60,9 @@ public class UserFileDAO implements UserDAO{
     }
 
         /**
-     * Saves the {@linkplain Product product} from the map into the file as an array of JSON objects
+     * Saves the {@linkplain User user} from the map into the file as an array of JSON objects
      * 
-     * @return true if the {@link Product product} were written successfully
+     * @return true if the {@link User user} were written successfully
      * 
      * @throws IOException when file cannot be accessed or written to
      */
@@ -77,7 +77,7 @@ public class UserFileDAO implements UserDAO{
     }
 
         /**
-     * Loads {@linkplain Product product} from the JSON file into the map
+     * Loads {@linkplain User user} from the JSON file into the map
      * <br>
      * Also sets next id to one more than the greatest id found in the file
      * 
@@ -89,12 +89,12 @@ public class UserFileDAO implements UserDAO{
         users = new TreeMap<>();
         nextId = 0;
 
-        // Deserializes the JSON objects from the file into an array of product
+        // Deserializes the JSON objects from the file into an array of user
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file
         User[] userArray = objectMapper.readValue(new File(filename),User[].class);
 
-        // Add each product to the tree map and keep track of the greatest id
+        // Add each user to the tree map and keep track of the greatest id
         for (User user : userArray) {
             users.put(user.getUsername(), user);
             if (user.getId() > nextId)
@@ -134,7 +134,7 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User createUser(String username) throws IOException{
         synchronized(users) {
-            // We create a new product object because the id field is immutable
+            // We create a new user object because the id field is immutable
             // and we need to assign the next unique id
             User newUser = new User(username, nextId);
             users.put(newUser.getUsername(),newUser);

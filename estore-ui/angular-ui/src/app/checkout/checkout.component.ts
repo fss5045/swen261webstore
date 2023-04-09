@@ -39,6 +39,7 @@ export class CheckoutComponent implements OnInit{
     for (var item of this.cart){
       this.subtotal += item.price;
     }
+    this.total = this.subtotal;
   });
   }
 
