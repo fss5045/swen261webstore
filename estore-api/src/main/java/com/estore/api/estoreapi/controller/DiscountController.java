@@ -25,7 +25,7 @@ import com.estore.api.estoreapi.model.Enums.UserType;
 public class DiscountController {
     private static final Logger LOG = Logger.getLogger(DiscountController.class.getName());
     private DiscountDAO discountDao;
-    private LoginController loginController;
+    public LoginController loginController;
 
     public DiscountController(DiscountDAO discountDao, LoginController loginController){
         this.discountDao = discountDao;
