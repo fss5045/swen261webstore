@@ -1,0 +1,55 @@
+.items {
+    list-style-type: none;
+    padding: 0;
+    width: 50%;
+}
+
+.items li {
+    margin: .5em;
+    margin-top: 0em;
+}
+
+.items .detail {
+    display: inline-block;
+    color: #121A13;
+    text-decoration: none;
+    background-color: #e6e3dc;
+    margin: .5em;
+    padding: 1em;
+    border: 2px solid #525252;
+    border-radius: 4px;
+}
+
+.items button {
+    background-color: #c7c6bc;
+    padding: .5em;
+    border-radius: 4px;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+label.name, label.price {
+    display: inline-block;
+    margin-bottom: .2em;
+}
+  
+.items button:hover {
+    background-color: #748c84;
+}
+
+button.checkout{
+    margin-right: .5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1.5em;
+    background-color: #748c84;
+    padding: 0.75em;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #eeedea;
+}
+
+button.checkout:hover{
+    background-color: #9EAFA9;
+}
