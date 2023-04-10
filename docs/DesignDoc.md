@@ -125,7 +125,7 @@ The Model Tier architecture uses the Spring REST API to run a server. The code i
 
 Some imporvements that could be made would mostly include improvements regarding quality of life improvements. These would be things such as being able to add a specified number of one product instead of having to click 'add to shopping cart multiple times.
 
-After the static code analysis was run the first time (sprint 2), we ended up with 3 bugs. These bugs were fixed during sprint 3 and we currently have 4 bugs. We sadly did not have time to fix these bugs but they do not seem to be fatal.
+After the static code analysis was run the first time (sprint 2), we ended up with 3 bugs. These bugs were fixed during sprint 3 and we currently have 2 bugs. We sadly did not have time to fix these bugs but they are not fatal.
 
 ## Testing
 
