@@ -37,6 +37,17 @@ label.name, label.price {
     background-color: #748c84;
 }
 
+button {
+    margin-right: .5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #c7c6bc;
+    padding: 0.75em;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
 button.checkout{
     margin-right: .5rem;
     padding: 1rem;

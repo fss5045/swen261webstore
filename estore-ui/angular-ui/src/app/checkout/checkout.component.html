@@ -8,12 +8,12 @@
     </li>
 </ul>
 <div class="totals">
-    <div class="totals2">
         <p id="subtotal">Subtotal: ${{subtotal}}</p>
-        <input type="text" id="discountIn" [(ngModel)]="discountCode" placeholder="Discount Code">
-        <button type="button" (click)="applyDiscount()">Apply</button>
+        <span>
+            <input type="text" [(ngModel)]="discountCode" placeholder="Discount Code">
+            <button type="button" (click)="applyDiscount()">Apply</button>
+        </span>
         <p id="discount" *ngIf="applied">Discount: {{discountCode}} (-{{amount}}%)</p>
         <h3 id="total">Total: ${{total}}</h3>
-    </div>
 </div>
 <button type="button" class="checkout" (click)="checkout()">Checkout</button>

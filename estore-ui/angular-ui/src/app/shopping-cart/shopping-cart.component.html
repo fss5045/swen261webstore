@@ -13,10 +13,10 @@
   <button *ngIf="cart.length > 0; else emptyCart" type="button" class="checkout" [routerLink]="['/checkout']">Checkout</button>
   <ng-template #emptyCart>
     <h3>Your cart is empty</h3>
-    <button type="button"><a routerLink="/products">View products</a></button>
+    <button type="button" [routerLink]="['/products']">View products</button>
   </ng-template>
 </div>
 <ng-template #notCustomer id="notCustomer">
   <h2>You're not logged in as a Customer</h2>
-  <button type="button"><a routerLink="/login">Login</a></button>
+  <button type="button" [routerLink]="['/login']">Login</button>
 </ng-template>

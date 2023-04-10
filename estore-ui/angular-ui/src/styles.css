@@ -1,35 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: #e6e3dc;
+  background-color: #e6e3dc;
 }
 
 h2 {
-    color: #26392a;
+  color: #26392a;
 }
 
 h1 {
-    color: #121A13;
-    font-family: Garamond, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  color: #121A13;
+  /* font-family: Garamond, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif; */
+  font-weight: bold;
+}
+
+.content {
+  margin: auto;
+  width: 45%;
+  /* border: 1px solid black; */
+  min-width: 50rem;
 }
 
 input:focus {
-    outline: 3px solid #9EAFA9;
-  }
+  outline: 3px solid #9EAFA9;
+}
 
-  button.delete {
-    display: inline-block;
-    background-color: #e6e3dc;
-    border-radius: 4px;
-    font-weight: bold;
-    padding: .1em .5em .1em .5em;
-    color: red;
-    margin-left: 1em;
-  }
+button.delete {
+  display: inline-block;
+  background-color: #e6e3dc;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: .1em .5em .1em .5em;
+  color: red;
+  margin-left: 1em;
+}
   
-  button.delete:hover {
-    background-color: #748c84;
-    color: white;
-  }
+button.delete:hover {
+  background-color: #748c84;
+  color: white;
+}
 
 button.add-button {
   background-color: #c7c6bc;
