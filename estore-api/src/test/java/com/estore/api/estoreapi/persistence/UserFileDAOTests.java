@@ -70,7 +70,7 @@ public class UserFileDAOTests {
     }
     
     @Test
-    public void testCreateHero()
+    public void testCreateUser()
     {
         User user = new User("Jimmy", 104);
 

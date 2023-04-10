@@ -86,11 +86,6 @@ public class ProductControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
-    /*****************************************************************
-     * The following tests will fail until all ProductController methods
-     * are implemented.
-     ****************************************************************/
-
     @Test
     public void testCreateProduct() throws IOException {  // createProduct may throw IOException
         // Setup
