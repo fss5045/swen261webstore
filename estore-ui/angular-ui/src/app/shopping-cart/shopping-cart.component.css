@@ -48,6 +48,10 @@ button {
     cursor: pointer;
   }
 
+button:hover{
+    background-color: #748c84;
+}
+
 button.checkout{
     margin-right: .5rem;
     padding: 1rem;

@@ -70,12 +70,17 @@ export class CheckoutComponent implements OnInit{
   }
 
   emptyCart(): void {
+    var nums: any = {};
     for(var item of this.cart){
-      item.number = item.number - 1;
+      this.log(`${item.id}, ${item.name}, ${item.number}`);
+      nums[item.id] = (nums[item.id] || 0) + 1;
+      this.log(`n:${nums[item.id]}`)
+      item.number = item.number - nums[item.id];
       this.log(`${item.name}, ${item.number}`);
-      this.productService.updateProduct(item).subscribe();
+      this.productService.updateProduct(item).subscribe(p => this.log(` new ${p.number}`));
       this.cartService.remove(item.id).subscribe();
     }
+   
     // window.location.reload();
     this.router.navigate(["/done"]);
   }
