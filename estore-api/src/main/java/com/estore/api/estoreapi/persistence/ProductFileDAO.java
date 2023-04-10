@@ -180,7 +180,7 @@ public class ProductFileDAO implements ProductDAO {
      */
     @Override
     public Product updateProduct(Product product) throws IOException {
-        synchronized(product) {
+        synchronized(products) {
             if (products.containsKey(product.getId()) == false)
                 return null;  // product does not exist
 
