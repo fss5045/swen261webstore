@@ -5,7 +5,7 @@ html{
 
 body {
   background-image: url("/assets/raccoon-soccer-1-2.jpg");
-  background-position: -75px 0px;
+  background-position: -70px 0px;
   /* background-image: url("/assets/soccer-racoon.gif"); */
   background-color: #e6e3dc;
   margin-top: 0px;
@@ -37,6 +37,7 @@ body {
   /* height: 100%; */
   padding: 1em;
   margin-top: 0%;
+  padding-bottom: 2em;
   padding-top: .5em;
   /* border: 1px solid black; */
   min-width: 50rem;
