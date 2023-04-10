@@ -51,7 +51,7 @@ public class ShoppingCartTests{
     }
 
     
-    public class testCart {
+    // public class testCart {
       
       @Test
       public void testAddItem() throws IOException {
@@ -68,7 +68,7 @@ public class ShoppingCartTests{
         assertTrue(user.getCart().contains(product));
       }
     
-}
+
 
 
 @Test
