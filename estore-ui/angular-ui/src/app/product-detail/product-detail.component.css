@@ -1,23 +1,36 @@
 /* ProductDetailComponent's private CSS styles */
+.details{
+  margin-left: 1em;
+}
+
 label {
     color: #435960;
     font-weight: bold;
   }
+
   input {
-    font-size: 1em;
-    padding: .5rem;
+    background-color: #e6e3dc;
+    padding: 0.75em;
+    border-radius: 4px;
+    margin: .5em;
   }
+
   button {
     margin-top: 20px;
     margin-right: .5rem;
-    background-color: #eee;
     padding: 1rem;
     border-radius: 4px;
     font-size: 1rem;
+    background-color: #c7c6bc;
+    padding: 0.75em;
+    border-radius: 4px;
+    cursor: pointer;
   }
+
   button:hover {
-    background-color: #cfd8dc;
+    background-color: #748c84;
   }
+
   button:disabled {
     background-color: #eee;
     color: #ccc;

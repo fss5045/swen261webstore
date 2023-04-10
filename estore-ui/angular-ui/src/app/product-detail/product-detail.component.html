@@ -1,18 +1,24 @@
 <div *ngIf="product">
     <h2>{{product.name | uppercase}} Details</h2>
-    <div>
+    <div class="details"> 
       <label for="product-name">Product name: </label>
       <input id="product-name" *ngIf="isAdmin; else customerName" [(ngModel)]="product.name" placeholder="Product name"/><br>
       <ng-template #customerName id="product-name" >{{product.name}}</ng-template>
-      <label for="product-number">quantity: </label>
+      <label for="product-number">Remaining: </label>
       <input type="number" id="product-number" *ngIf="isAdmin; else customerNum" [(ngModel)]="product.number" placeholder="Product number"/><br>
       <ng-template #customerNum id="product-number" >{{product.number}}</ng-template>
-      <label for="product-price">price: </label>
-      <input type="number" id="product-price" *ngIf="isAdmin; else customerPrice" [(ngModel)]="product.price" placeholder="Product price"/>
+      <label for="product-price">Rrice: </label>
+      <input type="number" id="product-price" *ngIf="isAdmin; else customerPrice" [(ngModel)]="product.price" placeholder="Product price"/><br>
       <ng-template #customerPrice id="product-number" >${{product.price}}</ng-template>
+      <label for="product-sport">Sport: </label>
+      <input id="product-sport" *ngIf="isAdmin; else customerSport" [(ngModel)]="product.sport" placeholder="Product sport"/><br>
+      <ng-template #customerSport id="product-sport" >{{product.sport}}</ng-template>
+      <label for="product-color">Color: </label>
+      <input id="product-color" *ngIf="isAdmin; else customerColor" [(ngModel)]="product.color" placeholder="Product color"/><br>
+      <ng-template #customerColor id="product-color" >{{product.color}}</ng-template>
+      <span id="id">ID: {{product.id}}</span>
     </div>
-    <div><span>id: </span>{{product.id}}</div>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" *ngIf="isAdmin" (click)="save()" >save</button>
-    <button type="button" *ngIf="isCustomer" (click)="addToCart(product.id)" >add to cart</button>
+    <button type="button" (click)="goBack()">Go Back</button>
+    <button type="button" *ngIf="isAdmin" (click)="save()" >Save</button>
+    <button type="button" *ngIf="isCustomer && product.number > 0" (click)="addToCart(product.id)" >Add to Cart</button>
   </div>

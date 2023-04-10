@@ -1,0 +1,19 @@
+.codes {
+    list-style-type: none;
+    padding: 0;
+    width: 50%;
+}
+
+.codes li {
+    margin: 1.5em;
+}
+
+.codes span {
+    color: #121A13;
+    text-decoration: none;
+    background-color: #e6e3dc;
+    margin: .5em;
+    padding: .5em;
+    border: 2px solid #525252;
+    border-radius: 4px;
+}

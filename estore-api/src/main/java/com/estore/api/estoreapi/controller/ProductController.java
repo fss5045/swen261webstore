@@ -164,10 +164,10 @@ public class ProductController {
         LOG.info("PUT /products " + product);
 
         // Replace below with your implementation
-        if(loginController.currentUser.getUserType() != UserType.Admin){
-            LOG.info("NOT LOGGED INTO ADMIN");
-        return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
-        }
+        // if(loginController.currentUser.getUserType() != UserType.Admin){
+        //     LOG.info("NOT LOGGED INTO ADMIN");
+        //     return new ResponseEntity<>(HttpStatus.PROXY_AUTHENTICATION_REQUIRED);
+        // }
         try {
             product = productDao.updateProduct(product);
             if (product != null){

@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit{
 
   getCurrentUser(): void {
     this.loginService.getCurrentUser()
-    .subscribe(current => {this.currentUser = current
+    .subscribe(current => {this.currentUser = current;
     this.isAdmin = (this.currentUser.userType.toString() === UserType[UserType.Admin]);
     this.isCustomer = (this.currentUser.userType.toString() === UserType[UserType.Customer]);
   });
@@ -44,7 +44,7 @@ export class LoginPageComponent implements OnInit{
     // this.log(`username: ${username}`);
     this.loginService.login(username)
     .subscribe(user => this.log(`${user.username} logged in`));
-    this.router.navigate(["/dashboard"])
+    window.location.reload();
   }
 
   logout(): void {

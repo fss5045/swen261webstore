@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
 
-import javax.lang.model.type.NullType;
-
 import com.estore.api.estoreapi.model.*;
 import com.estore.api.estoreapi.model.Enums.UserType;
 

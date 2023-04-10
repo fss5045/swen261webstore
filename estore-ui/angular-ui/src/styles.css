@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #e6e3dc;
+}
+
+h2 {
+  color: #26392a;
+}
+
+h1 {
+  color: #121A13;
+  /* font-family: Garamond, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif; */
+  font-weight: bold;
+}
+
+.content {
+  margin: auto;
+  width: 45%;
+  /* border: 1px solid black; */
+  min-width: 50rem;
+}
+
+input:focus {
+  outline: 3px solid #9EAFA9;
+}
+
+button.delete {
+  display: inline-block;
+  background-color: #e6e3dc;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: .1em .5em .1em .5em;
+  color: red;
+  margin-left: 1em;
+}
+  
+button.delete:hover {
+  background-color: #748c84;
+  color: white;
+}
+
+button.add-button {
+  background-color: #c7c6bc;
+  padding: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.add-button:hover {
+  background-color: #748c84;
+}
+
+.new {
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  padding: .5em;
+  color: #121A13;
+  background-color: #e6e3dc;
+}
+
+.new label, input {
+  margin-right: .25em;
+}
+
+.new input {
+  background-color: #e6e3dc;
+  padding: 0.75em;
+  border-radius: 4px;
+}

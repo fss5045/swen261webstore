@@ -1,9 +1,13 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/products">Products</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/cart">Cart</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<div class="content">
+  <h1>{{title}}</h1>
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/products">Products</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/cart">Cart</a>
+    <a *ngIf="isAdmin" routerLink="codes">Discount Codes</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <app-messages></app-messages> -->

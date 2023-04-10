@@ -81,7 +81,7 @@ export class ProductService {
   deleteProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
     return this.http.delete<Product>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted product id=${id}`)),
+      tap(product => this.log(`deleted product id=${product.id}`)),
       catchError(this.handleError<Product>('deleteProduct'))
     );
   }
@@ -89,7 +89,7 @@ export class ProductService {
   /** PUT: update the product on the server */
   updateProduct(product: Product): Observable<any> {
     return this.http.put(this.productsUrl, product, this.httpOptions).pipe(
-      tap(_ => this.log(`updated product id=${product.id}`)),
+      tap(p => this.log(`updated product id=${product.id},${product.number}`)),
       catchError(this.handleError<any>('updateProduct'))
     );
   }

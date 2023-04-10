@@ -23,7 +23,7 @@ export class CartService {
 
     /** PUT: add item to cart*/
     add(id: number): Observable<User> {
-        this.log(`adding ${id} to url ${this.cartUrl}`);
+        // this.log(`adding ${id} to url ${this.cartUrl}`);
         return this.http.put<User>(this.cartUrl, id, this.httpOptions).pipe(
             tap((user: User) => {this.log(`added product ${id} to ${user.username}'s cart`)}),
             catchError(this.handleError<User>(`addCart`))
@@ -37,7 +37,7 @@ export class CartService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         body: id
       };
-      this.log(`adding ${id} to url ${this.cartUrl}`);
+      // this.log(`removing ${id} to url ${this.cartUrl}`);
       return this.http.delete<User>(this.cartUrl, options).pipe(
         tap((user: User) => {this.log(`removing product ${id} from ${user.username}'s cart`)}),
         catchError(this.handleError<User>(`removeCart`))

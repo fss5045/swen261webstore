@@ -1,0 +1,20 @@
+<ul class="items">
+    <li *ngFor="let item of cart">
+        <div *ngIf="item" class="detail">
+            <label class="name">{{item.name}}: </label>
+            <br>
+            <label class="info"> {{item.color}} / ${{item.price}} </label>
+        </div>
+    </li>
+</ul>
+<div class="totals">
+        <p id="subtotal">Subtotal: ${{subtotal}}</p>
+        <span>
+            <input type="text" [(ngModel)]="discountCode" placeholder="Discount Code">
+            <button type="button" (click)="applyDiscount()">Apply</button>
+        </span>
+        <br>
+        <p id="discount" *ngIf="applied">Discount: {{discountCode}} (-{{amount}}%)</p>
+        <h3 id="total">Total: ${{total}}</h3>
+</div>
+<button type="button" class="checkout" (click)="checkout()">Checkout</button>

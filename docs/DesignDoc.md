@@ -63,8 +63,8 @@ The MVP will have the following functionality: minimal authentucation for users 
 -Browse
 -Login
 -Shopping Cart
--10% #1
--10% #2
+-10% Filtering and Sorting
+-10% Discount Codes
 
 ## Application Domain
 
@@ -101,6 +101,7 @@ with the e-store application.
 > _Provide a summary of the application's user interface.  Describe, from
 > the user's perspective, the flow of the pages in the web application._
 
+The website boots to the home page/ dashboard page. Within this page the user can search for products and see "recommended" products. From here the user can see and use a navigation bar at the top of the website. The options are login, dashboard, products, and shopping cart. The login page allows a user to login to their current account or register a new account by typing in a new username. The shopping cart page allows a user to see and make changes to their shopping cart. This means that a user can add or remove things from their shopping cart. After the user is ready to checkout they can click the checkout button which brings them to a new page within the shopping cart page that allows them to review their order and apply any discount codes they would like. Lastly, the products page is a page that contains all of the store's products in a list grid format. The user can click on each individual product to see its details and and add that product to the cart.
 
 ### View Tier
 > _Provide a summary of the View Tier UI of your architecture.

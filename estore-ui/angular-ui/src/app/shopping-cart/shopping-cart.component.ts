@@ -18,7 +18,7 @@ import { MessageService } from '../message.service'
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit{
   products: Product[] = [];
   cart: Product[] = [];
   currentUser: User | undefined;
