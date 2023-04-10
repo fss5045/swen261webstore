@@ -1,13 +1,14 @@
-<div class="content">
-  <h1>{{title}}</h1>
-  <nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/cart">Cart</a>
-    <a *ngIf="isAdmin" routerLink="codes">Discount Codes</a>
-  </nav>
-  <router-outlet></router-outlet>
-</div>
-
-<!-- <app-messages></app-messages> -->
+  <!-- <div class="background-img"></div> -->
+  <div class="content">
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/cart">Cart</a>
+      <a *ngIf="isAdmin" routerLink="codes">Discount Codes</a>
+      <a routerLink="/login">Login</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <!-- <app-messages></app-messages> -->
+  </div>
+  <!-- <div class="background-img"></div> -->

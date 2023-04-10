@@ -42,7 +42,7 @@ button#reset:focus {
 }
 
 .products {
-    margin: 0 0 2em 0;
+    margin: 0 10% 0 10%;
     list-style-type: none;
     padding: 0;
     width: 50%;
@@ -50,7 +50,8 @@ button#reset:focus {
   
   ul {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin: auto;
+    grid-template-columns: repeat(2, 17em);
     grid-column-gap: 2em;
   }
 

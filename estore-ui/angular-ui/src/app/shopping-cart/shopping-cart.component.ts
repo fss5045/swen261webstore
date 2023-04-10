@@ -50,9 +50,19 @@ export class ShoppingCartComponent implements OnInit{
     this.isAdmin = (this.currentUser.userType.toString() === UserType[UserType.Admin]);
     this.isCustomer = (this.currentUser.userType.toString() === UserType[UserType.Customer]);
     this.cart = this.currentUser.cart;
+    var c2: Product [] = [];
     for (var item of this.cart){
-      this.log(item.name);
+      var i2;
+      this.productService.getProduct(item.id).subscribe(p => {
+        i2 = p;
+        this.log(`${i2.name}, ${i2.number}`);
+        // if(c2.includes(i2)){
+
+        // }
+        c2.push(i2);
+      });
     }
+    this.cart = c2;
   });
   }
 

@@ -7,7 +7,7 @@
       <label for="product-number">Remaining: </label>
       <input type="number" id="product-number" *ngIf="isAdmin; else customerNum" [(ngModel)]="product.number" placeholder="Product number"/><br>
       <ng-template #customerNum id="product-number" >{{product.number}}</ng-template>
-      <label for="product-price">Rrice: </label>
+      <label for="product-price">Price: </label>
       <input type="number" id="product-price" *ngIf="isAdmin; else customerPrice" [(ngModel)]="product.price" placeholder="Product price"/><br>
       <ng-template #customerPrice id="product-number" >${{product.price}}</ng-template>
       <label for="product-sport">Sport: </label>

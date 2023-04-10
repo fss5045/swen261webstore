@@ -1,6 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+html{
+  height: 100%;
+}
+
 body {
+  background-image: url("/assets/raccoon-soccer-1-2.jpg");
+  background-position: -75px 0px;
+  /* background-image: url("/assets/soccer-racoon.gif"); */
   background-color: #e6e3dc;
+  margin-top: 0px;
+  height: 100%;
+}
+
+/* .main{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  grid-template-columns: repeat(2, 17em);
+  grid-column-gap: 2em;
+}
+
+.background-img{
+  position: relative;
+  background-color: red;
+  background-image: url("/assets/raccoon-soccer-1-2.jpg");
+  width: 25%;
+  height: 100%;
+} */
+
+.content {
+  position: relative;
+  background-color: #e6e3dc;
+  margin: auto;
+  width: 50%;
+  /* height: 100%; */
+  padding: 1em;
+  margin-top: 0%;
+  padding-top: .5em;
+  /* border: 1px solid black; */
+  min-width: 50rem;
 }
 
 h2 {
@@ -11,13 +50,6 @@ h1 {
   color: #121A13;
   /* font-family: Garamond, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif; */
   font-weight: bold;
-}
-
-.content {
-  margin: auto;
-  width: 45%;
-  /* border: 1px solid black; */
-  min-width: 50rem;
 }
 
 input:focus {
@@ -66,4 +98,22 @@ button.add-button:hover {
   background-color: #e6e3dc;
   padding: 0.75em;
   border-radius: 4px;
+}
+
+::-webkit-scrollbar{
+  width: .7rem;
+  height: .7rem;
+}
+
+::-webkit-scrollbar-track{
+  background-color: #c7c6bc;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #9EAFA9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner{
+  background-color: #c7c6bc;
 }

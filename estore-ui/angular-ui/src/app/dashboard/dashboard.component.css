@@ -51,4 +51,20 @@ h2 {
   a:hover {
     background-color: black;
   }
-  
+
+  .welcome{
+    margin: auto;
+  }
+
+  .welcome p{
+    margin-bottom: 1em;
+    color: #26392a;
+    font-weight: bold;
+    font-stretch: extra-expanded;
+  }
+
+  .welcome-img{
+    width: 470px;
+    height: 387px;
+    background-image: url("/assets/soccer-racoon.gif");
+}
