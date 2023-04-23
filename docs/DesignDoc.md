@@ -127,6 +127,15 @@ Some imporvements that could be made would mostly include improvements regarding
 
 After the static code analysis was run the first time (sprint 2), we ended up with 3 bugs. These bugs were fixed during sprint 3 and we currently have 4 bugs. We sadly did not have time to fix these bugs but they do not seem to be fatal.
 
+![Java Bug 1](javabug1.png)
+This bug is because of a possible null pointer exception when logging in and checking if the user exists or is an Admin. In practice, this null pointer exception never happens because the UserController and UserDAO methods throw exceptions and the variable user is never actually null in practice.
+
+![Java Bug 2](javabug2.png)
+This bug is minor and is because we overwrote the equals() method for Product but not the hashCode() method. This doesn't affect our program at all in practice but it is the correct way to do stuff in Java. 
+
+![TypeScript Bugs](tsbug.png)
+All these bugs are from duplicated code in the css from our project. It's unesscary but does not affect the running of the website.
+
 ## Testing
 
 The testing for sprint 1 consisted of testing our product classes and the code that is associated with product objects (mostly cURL command functions). During our testing for sprint 1, everything but our create (the PUT cURL command) passed our suite of tests. The create function only failed the test that checked if a product already existed. This was a quick fix.
