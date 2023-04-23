@@ -119,7 +119,10 @@ The ViewModel tier is also made in Angular and typescript. It takes the form of 
 
 ### Model Tier
 
+![Class Diagram](ClassDiagram.png)
+
 The Model Tier architecture uses the Spring REST API to run a server. The code is split into 3 sections, model, controller, and persistence. The model section is filled with Java classes for the kinds of objects we use in the project, Discounts, Products, Shopping Carts, and Users. The controller sections is made up of classes that handle the cURL calls to the API. There is a controller for each Model. There is also a controller to see which user is logged in. The persistence section has 2 Java classes for each model, a DAO interface and a FileDAO class. These contain the methods for accessing and editing the data for the project. The data for this project is split into 3 JSON files, codes.json (discount codes), products.json(products), and users.json(users and their shopping carts). 
+
 
 ### Static Code Analysis/Design Improvements
 
